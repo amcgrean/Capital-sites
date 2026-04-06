@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase, BUSINESS_ID } from '@/lib/supabase'
+import { createClient } from '@supabase/supabase-js'
+import { BUSINESS_ID } from '@/lib/supabase'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!
+)
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
