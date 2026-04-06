@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: 'A Taste of Italy Website <noreply@atasteofitaly.com>',
       to: CATERING_INQUIRY_EMAIL,
-      replyTo: email,
+      reply_to: email,
       subject: `New Catering Inquiry from ${name}`,
       html: `
         <h2>New Catering Inquiry</h2>
