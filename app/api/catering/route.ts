@@ -8,9 +8,14 @@ const supabase = createClient(
 )
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
 const CATERING_INQUIRY_EMAIL =
   process.env.CATERING_INQUIRY_EMAIL ?? 'owner@atasteofitaly.com'
+
+function getResend() {
+  const key = process.env.RESEND_API_KEY
+  if (!key) return null
+  return new Resend(key)
+}
 
 export async function POST(req: NextRequest) {
   let body: {
@@ -57,8 +62,9 @@ export async function POST(req: NextRequest) {
   }
 
   // Send email notification via Resend
+  const resend = getResend()
   try {
-    await resend.emails.send({
+    await resend?.emails.send({
       from: 'A Taste of Italy Website <noreply@atasteofitaly.com>',
       to: CATERING_INQUIRY_EMAIL,
       reply_to: email,
