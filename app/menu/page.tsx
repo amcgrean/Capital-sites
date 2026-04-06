@@ -5,7 +5,7 @@ import MenuClient from './MenuClient'
 export const metadata: Metadata = {
   title: 'Menu',
   description:
-    'Browse the full menu at A Taste of Italy — hot and cold sandwiches, deli trays, sides, and Italian grocery items in Clive, Iowa.',
+    'Browse the full menu at A Taste of Italy — classic and specialty deli sandwiches, soup, salads, deli trays, and Italian grocery items in Clive, Iowa.',
 }
 
 export const revalidate = 3600 // Revalidate every hour
@@ -15,10 +15,16 @@ export default async function MenuPage() {
 
   // Group by category preserving a logical order
   const CATEGORY_ORDER = [
+    'Classic Sandwiches',
+    'Premium Sandwiches',
+    'House Special',
+    'Specialty Sandwiches',
+    'Soup & Salads',
     'Hot Sandwiches',
     'Cold Sandwiches',
     'Deli Trays',
     'Sides',
+    'Additional Goodies',
     'Grocery',
   ]
 
