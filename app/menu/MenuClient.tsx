@@ -181,7 +181,7 @@ function MenuItemCard({
         </div>
         {item.price && (
           <p className="font-sans font-semibold text-italian-red flex-shrink-0 text-sm mt-0.5">
-            {item.price.startsWith('$') || item.price.toLowerCase().includes('price') || item.price.toLowerCase().includes('call') || item.price.toLowerCase().includes('from')
+            {item.price.includes('$') || item.price.toLowerCase().includes('price') || item.price.toLowerCase().includes('call') || item.price.toLowerCase().includes('from') || item.price.toLowerCase().includes('market')
               ? item.price
               : `$${item.price}`}
           </p>
