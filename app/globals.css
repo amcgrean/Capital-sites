@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-charcoal font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-italian-red text-white font-sans font-semibold px-6 py-3 rounded-sm hover:bg-italian-red-dark transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-italian-red focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-italian-red text-italian-red font-sans font-semibold px-6 py-3 rounded-sm hover:bg-italian-red hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-italian-red focus:ring-offset-2;
+  }
+
+  .btn-cream {
+    @apply inline-flex items-center justify-center gap-2 bg-cream text-italian-red font-sans font-semibold px-6 py-3 rounded-sm hover:bg-cream-dark transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-cream focus:ring-offset-2;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl text-charcoal;
+  }
+
+  .section-divider {
+    @apply w-16 h-0.5 bg-italian-red my-4;
+  }
+
+  .container-content {
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .field-input {
+    @apply w-full font-sans text-sm text-charcoal bg-white border border-gray-300 rounded-sm px-3 py-2.5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-italian-red focus:border-transparent transition-colors duration-150;
+  }
+}
