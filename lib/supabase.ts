@@ -18,7 +18,7 @@ function getSupabase() {
   return _supabase
 }
 
-export const BUSINESS_ID = process.env.NEXT_PUBLIC_BUSINESS_ID!
+export const BUSINESS_ID = process.env.NEXT_PUBLIC_BUSINESS_ID ?? 'ad17c740-7d6e-4884-b948-cab4a9cc8ffd'
 
 // Types
 
