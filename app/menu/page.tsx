@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     'Browse the full menu at A Taste of Italy — classic and specialty deli sandwiches, soup, salads, deli trays, and Italian grocery items in Clive, Iowa.',
 }
 
-export const revalidate = 3600 // Revalidate every hour
+export const dynamic = 'force-dynamic'
 
 export default async function MenuPage() {
   const items = await getMenuItems()

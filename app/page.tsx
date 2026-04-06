@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { getBusiness, getFeaturedMenuItems } from '@/lib/supabase'
 
+export const dynamic = 'force-dynamic'
+
 const PHONE_HREF = 'tel:5152210743'
 const PHONE = '515-221-0743'
 const MAPS_URL =
