@@ -1,9 +1,22 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient as _createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!
+// Lazy singleton — only instantiated at request time, not at module load,
+// so a missing env var during `next build` won't crash static page collection.
+let _supabase: ReturnType<typeof _createClient> | null = null
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+function getSupabase() {
+  if (!_supabase) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY
+    if (!url || !key) {
+      throw new Error(
+        'Missing Supabase env vars: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY must be set.'
+      )
+    }
+    _supabase = _createClient(url, key)
+  }
+  return _supabase
+}
 
 export const BUSINESS_ID = process.env.NEXT_PUBLIC_BUSINESS_ID!
 
@@ -47,7 +60,7 @@ export interface CateringInquiry {
 // Data fetchers
 
 export async function getBusiness(): Promise<Business | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('businesses')
     .select('*')
     .eq('id', BUSINESS_ID)
@@ -61,7 +74,7 @@ export async function getBusiness(): Promise<Business | null> {
 }
 
 export async function getMenuItems(): Promise<MenuItem[]> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('menu_items')
     .select('*')
     .eq('business_id', BUSINESS_ID)
@@ -76,7 +89,7 @@ export async function getMenuItems(): Promise<MenuItem[]> {
 }
 
 export async function getFeaturedMenuItems(): Promise<MenuItem[]> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('menu_items')
     .select('*')
     .eq('business_id', BUSINESS_ID)
