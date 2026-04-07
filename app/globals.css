@@ -28,6 +28,8 @@
     display: none;
   }
 }
+
+@layer components {
   /* ── Buttons ─────────────────────────────────────────────────────────────
      No rounded corners — sharp edges suit the vintage print aesthetic.    */
 
