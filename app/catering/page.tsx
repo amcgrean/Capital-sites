@@ -44,13 +44,13 @@ export default function CateringPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="bg-italian-red text-white py-14">
+      <div className="bg-italian-red text-parchment py-14">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="font-sans text-red-300 text-xs font-semibold uppercase tracking-widest mb-2">
-            Events · Office Lunches · Family Gatherings
+          <p className="font-sans text-gold/70 text-[9px] font-semibold uppercase tracking-[0.3em] mb-2">
+            Events &nbsp;·&nbsp; Office Lunches &nbsp;·&nbsp; Family Gatherings
           </p>
-          <h1 className="font-serif text-4xl md:text-5xl mb-3">Catering</h1>
-          <p className="font-sans text-red-100 max-w-lg leading-relaxed">
+          <h1 className="font-display text-5xl md:text-6xl italic mb-3">Catering</h1>
+          <p className="font-sans text-parchment/70 max-w-lg leading-relaxed">
             From deli trays and box lunches to 6-foot subs, we bring authentic
             Italian flavor to your event. Call us or fill out the form below.
           </p>

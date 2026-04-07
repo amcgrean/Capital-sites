@@ -10,30 +10,42 @@ const FACEBOOK_URL = 'https://www.facebook.com/atasteofitalyclive'
 
 export default function Footer() {
   return (
-    <footer className="bg-charcoal text-gray-300 pt-12 pb-6">
+    <footer className="bg-espresso text-cream/60 pt-12 pb-6">
+      {/* Italian flag accent strip */}
+      <div className="flex h-0.5 mb-10">
+        <div className="flex-1 bg-[#009246]/60" />
+        <div className="flex-1 bg-cream/20" />
+        <div className="flex-1 bg-[#CE2B37]/60" />
+      </div>
+
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-gray-700">
-          {/* Brand */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-gold/15">
+
+          {/* ── Brand ──────────────────────────────────────────── */}
           <div>
-            <h3 className="font-serif text-white text-xl mb-3">
+            <h3 className="font-display text-cream text-2xl italic leading-tight mb-1">
               A Taste of Italy
             </h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Authentic Italian deli serving Clive and the greater Des Moines
-              area since June 1996.
+            <p className="font-sans text-gold/60 text-[9px] tracking-[0.2em] uppercase mb-5">
+              Family Deli &amp; Market &nbsp;·&nbsp; Est. 1996
+            </p>
+            <p className="font-sans text-sm text-cream/40 leading-relaxed">
+              Todd Ferin&rsquo;s neighborhood Italian deli and small market,
+              serving Clive and greater Des Moines with honest, handmade food
+              since June 1, 1996.
             </p>
           </div>
 
-          {/* Contact */}
+          {/* ── Contact ────────────────────────────────────────── */}
           <div>
-            <h4 className="font-sans text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
+            <h4 className="font-sans text-[9px] font-semibold text-gold/60 uppercase tracking-[0.2em] mb-4">
               Contact
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href={PHONE_HREF}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-cream transition-colors"
                 >
                   {PHONE}
                 </a>
@@ -43,7 +55,7 @@ export default function Footer() {
                   href={MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-cream transition-colors"
                 >
                   {ADDRESS}
                   <br />
@@ -55,7 +67,7 @@ export default function Footer() {
                   href={FACEBOOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-cream transition-colors"
                 >
                   Facebook
                 </a>
@@ -63,25 +75,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Hours */}
+          {/* ── Hours ──────────────────────────────────────────── */}
           <div>
-            <h4 className="font-sans text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
+            <h4 className="font-sans text-[9px] font-semibold text-gold/60 uppercase tracking-[0.2em] mb-4">
               Hours
             </h4>
-            <ul className="space-y-1 text-sm">
+            <ul className="space-y-1.5 text-sm">
               {[
                 ['Mon – Fri', '10:30 AM – 6:00 PM'],
                 ['Saturday', '10:30 AM – 5:00 PM'],
                 ['Sunday', 'Closed'],
-              ].map(([day, hours]) => (
+              ].map(([day, hrs]) => (
                 <li key={day} className="flex justify-between gap-4">
-                  <span className="text-gray-400">{day}</span>
-                  <span
-                    className={
-                      hours === 'Closed' ? 'text-gray-500' : 'text-gray-300'
-                    }
-                  >
-                    {hours}
+                  <span className="text-cream/35">{day}</span>
+                  <span className={hrs === 'Closed' ? 'text-cream/25' : 'text-cream/60'}>
+                    {hrs}
                   </span>
                 </li>
               ))}
@@ -89,26 +97,25 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
-          <p>
-            &copy; {new Date().getFullYear()} A Taste of Italy. All rights
-            reserved.
-          </p>
-          <nav className="flex gap-4">
-            <Link href="/menu" className="hover:text-gray-300 transition-colors">
+        {/* ── Bottom bar ──────────────────────────────────────── */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-center sm:text-left">
+            <p className="text-xs text-cream/25">
+              &copy; {new Date().getFullYear()} A Taste of Italy. All rights
+              reserved.
+            </p>
+            <p className="font-display italic text-gold/35 text-sm mt-0.5">
+              Grazie per la vostra visita.
+            </p>
+          </div>
+          <nav className="flex gap-5 text-xs text-cream/25">
+            <Link href="/menu" className="hover:text-cream/50 transition-colors">
               Menu
             </Link>
-            <Link
-              href="/catering"
-              className="hover:text-gray-300 transition-colors"
-            >
+            <Link href="/catering" className="hover:text-cream/50 transition-colors">
               Catering
             </Link>
-            <Link
-              href="/contact"
-              className="hover:text-gray-300 transition-colors"
-            >
+            <Link href="/contact" className="hover:text-cream/50 transition-colors">
               Contact
             </Link>
           </nav>

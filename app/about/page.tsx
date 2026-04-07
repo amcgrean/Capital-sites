@@ -30,14 +30,15 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="bg-italian-red text-white py-14">
+      <div className="bg-italian-red text-parchment py-14">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="font-sans text-red-300 text-xs font-semibold uppercase tracking-widest mb-2">
-            Since June 1, 1996
+          <p className="font-sans text-gold/70 text-[9px] font-semibold uppercase tracking-[0.3em] mb-2">
+            Famiglia Ferin &nbsp;·&nbsp; Since June 1, 1996
           </p>
-          <h1 className="font-serif text-4xl md:text-5xl mb-3">Our Story</h1>
-          <p className="font-sans text-red-100 max-w-lg leading-relaxed">
-            Nearly three decades of authentic Italian deli, one sandwich at a time.
+          <h1 className="font-display text-5xl md:text-6xl italic mb-3">Our Story</h1>
+          <p className="font-sans text-parchment/70 max-w-lg leading-relaxed">
+            Nearly three decades of authentic Italian deli, one sandwich at a
+            time.
           </p>
         </div>
       </div>
@@ -150,7 +151,7 @@ export default function AboutPage() {
         </div>
 
         {/* Philosophy section */}
-        <div className="bg-italian-red text-white rounded-sm p-10 md:p-14">
+        <div className="bg-italian-red text-parchment p-10 md:p-14">
           <div className="max-w-2xl">
             <p className="font-sans text-red-300 text-xs font-semibold uppercase tracking-widest mb-3">
               Our Philosophy
