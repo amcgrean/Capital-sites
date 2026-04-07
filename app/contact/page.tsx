@@ -34,12 +34,15 @@ export default async function ContactPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="bg-italian-red text-white py-14">
+      <div className="bg-italian-red text-parchment py-14">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-4xl md:text-5xl mb-3">Contact Us</h1>
-          <p className="font-sans text-red-100 max-w-lg leading-relaxed">
-            We&rsquo;re located in Clive, Iowa. Stop in, give us a call, or find us on
-            Facebook.
+          <p className="font-sans text-gold/70 text-[9px] font-semibold uppercase tracking-[0.3em] mb-2">
+            8421 University Blvd &nbsp;·&nbsp; Clive, Iowa
+          </p>
+          <h1 className="font-display text-5xl md:text-6xl italic mb-3">Contact Us</h1>
+          <p className="font-sans text-parchment/70 max-w-lg leading-relaxed">
+            We&rsquo;re located in Clive, Iowa. Stop in, give us a call, or find
+            us on Facebook.
           </p>
         </div>
       </div>
@@ -49,7 +52,7 @@ export default async function ContactPage() {
           {/* Info column */}
           <div className="lg:col-span-2 space-y-8">
             {/* Tap to call */}
-            <div className="bg-italian-red rounded-sm p-6 text-white text-center">
+            <div className="bg-italian-red p-6 text-parchment text-center">
               <p className="font-sans text-red-200 text-xs uppercase tracking-widest mb-2">
                 The fastest way to reach us
               </p>
@@ -133,7 +136,7 @@ export default async function ContactPage() {
 
           {/* Map column */}
           <div className="lg:col-span-3">
-            <div className="rounded-sm overflow-hidden border border-gray-200 h-80 lg:h-full min-h-[320px]">
+            <div className="overflow-hidden border border-parchment-dark h-80 lg:h-full min-h-[320px]">
               <iframe
                 src={MAPS_EMBED_URL}
                 width="100%"

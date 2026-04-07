@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Inter, Playfair_Display, Cormorant_Garamond } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -14,15 +14,24 @@ const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
   display: 'swap',
+  style: ['normal', 'italic'],
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-cormorant',
+  display: 'swap',
+  weight: ['400', '600', '700'],
+  style: ['normal', 'italic'],
 })
 
 export const metadata: Metadata = {
   title: {
-    default: 'A Taste of Italy | Authentic Italian Deli in Clive, Iowa',
+    default: 'A Taste of Italy | Family Italian Deli & Market in Clive, Iowa',
     template: '%s | A Taste of Italy',
   },
   description:
-    'Authentic Italian deli in Clive, Iowa serving Chicago beef, meatball subs, Graziano\'s sausage, Italian hoagies, and deli trays since 1996.',
+    "Todd Ferin's family-owned Italian deli and market in Clive, Iowa. Fresh sandwiches made to order, Chicago beef, meatball subs, Graziano's sausage, and an Italian grocery counter since June 1996.",
   keywords: [
     'Italian deli',
     'Clive Iowa',
@@ -32,6 +41,8 @@ export const metadata: Metadata = {
     'deli trays',
     'Graziano sausage',
     'Des Moines Italian food',
+    'family owned deli Iowa',
+    'Italian market Des Moines',
   ],
   openGraph: {
     siteName: 'A Taste of Italy',
@@ -46,7 +57,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable} ${cormorant.variable}`}
+    >
       <body className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-1">{children}</main>

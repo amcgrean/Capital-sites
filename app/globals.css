@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-cream text-charcoal font-sans;
+    @apply bg-parchment text-charcoal font-sans;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -17,39 +17,75 @@
 }
 
 @layer components {
+  /* ── Buttons ─────────────────────────────────────────────────────────────
+     No rounded corners — sharp edges suit the vintage print aesthetic.    */
+
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-italian-red text-white font-sans font-semibold px-6 py-3 rounded-sm hover:bg-italian-red-dark transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-italian-red focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2
+           bg-italian-red text-cream font-sans font-semibold px-6 py-3
+           border border-italian-red-dark
+           hover:bg-italian-red-dark transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-italian-red focus:ring-offset-2;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 border-2 border-italian-red text-italian-red font-sans font-semibold px-6 py-3 rounded-sm hover:bg-italian-red hover:text-white transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-italian-red focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2
+           border-2 border-italian-red text-italian-red font-sans font-semibold px-6 py-3
+           hover:bg-italian-red hover:text-cream transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-italian-red focus:ring-offset-2;
   }
 
   .btn-cream {
-    @apply inline-flex items-center justify-center gap-2 bg-cream text-italian-red font-sans font-semibold px-6 py-3 rounded-sm hover:bg-cream-dark transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-cream focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2
+           bg-cream text-italian-red font-sans font-semibold px-6 py-3
+           border border-parchment-dark
+           hover:bg-parchment-dark transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-cream focus:ring-offset-2;
   }
+
+  /* ── Typography ─────────────────────────────────────────────────────────
+     section-title uses the Cormorant Garamond display font, italic —
+     the visual heart of the vintage Italian aesthetic.                     */
 
   .section-title {
-    @apply font-serif text-3xl md:text-4xl text-charcoal;
+    @apply font-display text-4xl md:text-5xl text-charcoal italic;
   }
 
+  /* A tapered gold gradient line — replaces the plain red bar */
   .section-divider {
-    @apply w-16 h-0.5 bg-italian-red my-4;
+    display: block;
+    width: 4rem;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #B8860B, transparent);
+    margin: 0.625rem 0 1rem;
+    border: none;
   }
 
+  /* ── Layout ─────────────────────────────────────────────────────────────*/
   .container-content {
     @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
+  /* ── Form inputs ────────────────────────────────────────────────────────*/
   .field-input {
-    @apply w-full font-sans text-sm text-charcoal bg-white border border-gray-300 rounded-sm px-3 py-2.5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-italian-red focus:border-transparent transition-colors duration-150;
+    @apply w-full font-sans text-sm text-charcoal bg-white
+           border border-parchment-dark px-3 py-2.5
+           placeholder-gray-400
+           focus:outline-none focus:ring-2 focus:ring-italian-red focus:border-transparent
+           transition-colors duration-150;
   }
 
+  /* ── Badges ─────────────────────────────────────────────────────────────*/
   .badge-fresh {
-    @apply inline-flex items-center gap-1.5 bg-basil text-white font-sans text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide;
+    @apply inline-flex items-center gap-1.5
+           bg-basil text-cream font-sans text-xs font-semibold
+           px-3 py-1 uppercase tracking-wide;
   }
 
   .badge-local {
-    @apply inline-flex items-center gap-1.5 bg-olive text-white font-sans text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide;
+    @apply inline-flex items-center gap-1.5
+           text-espresso font-sans text-xs font-semibold
+           px-3 py-1 uppercase tracking-wide;
+    background: linear-gradient(135deg, #D4A520, #B8860B);
   }
 }

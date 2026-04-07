@@ -9,13 +9,8 @@ const MAPS_URL =
   'https://maps.google.com/?q=8421+University+Blvd+Suite+D,+Clive+IA+50325'
 
 const DAYS_ORDER = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
+  'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+  'Friday', 'Saturday', 'Sunday',
 ]
 
 const TESTIMONIALS = [
@@ -27,7 +22,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "We've ordered deli trays for every company event for ten years. Todd and his team always deliver quality. The meatball sub tray is a crowd favorite.",
+      "We've ordered deli trays for every company event for ten years. Todd always delivers. The meatball sub tray is a crowd favorite every single time.",
     author: 'Sarah K.',
     stars: 5,
   },
@@ -42,25 +37,25 @@ const TESTIMONIALS = [
 const CATEGORY_CARDS = [
   {
     title: 'Hot Sandwiches',
-    desc: "Chicago beef, meatball, Graziano's sausage — our house specialties, made to order every day.",
+    desc: "Chicago beef, meatball, Graziano's sausage — house specialties made fresh to order every day.",
     href: '/menu#hot-sandwiches',
     icon: <HotSandwichIcon />,
   },
   {
     title: 'Cold Sandwiches',
-    desc: 'The classic Italian hoagie and more, stacked with premium deli meats and provolone.',
+    desc: 'Classic Italian hoagies and more, stacked with premium deli meats and imported provolone.',
     href: '/menu#cold-sandwiches',
     icon: <ColdSandwichIcon />,
   },
   {
     title: 'Deli Trays & Catering',
-    desc: '6-foot subs, box lunches, and antipasto trays for events of any size.',
+    desc: '6-foot subs, box lunches, and antipasto trays for parties and corporate events of any size.',
     href: '/catering',
     icon: <CateringIcon />,
   },
   {
-    title: 'Italian Grocery',
-    desc: "Graziano's sausage, house marinara, imported pasta, and more to take home.",
+    title: 'Italian Market',
+    desc: "Graziano's sausage, house marinara, imported pasta, and Italian specialty groceries to take home.",
     href: '/menu#grocery',
     icon: <GroceryIcon />,
   },
@@ -76,70 +71,93 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* ── HERO ────────────────────────────────────────────────── */}
-      <section className="bg-italian-red text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <div className="flex flex-wrap items-center gap-3 mb-5">
-            <span className="badge-fresh">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-300 inline-block" />
-              Made to Order · Fresh Daily
-            </span>
-            <span className="font-sans text-red-300 text-xs font-semibold uppercase tracking-widest">
-              Est. June 1, 1996
-            </span>
-          </div>
-          <h1 className="font-serif text-4xl md:text-6xl leading-tight mb-5 max-w-2xl">
-            Your Neighborhood<br className="hidden sm:block" /> Italian Deli
-          </h1>
-          <p className="font-sans text-red-100 text-lg md:text-xl max-w-xl leading-relaxed mb-3">
-            Todd Ferin has been behind the counter every day since 1996 —
-            building Chicago beef, meatball subs, and Graziano&rsquo;s sausage
-            sandwiches fresh to order for Clive and Des Moines.
-          </p>
-          <p className="font-sans text-red-300 text-sm mb-8">
-            No chains. No heat lamps. Just a real neighborhood deli.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href={PHONE_HREF}
-              className="btn-cream text-base px-7 py-4 text-lg"
-            >
-              <PhoneIcon />
-              {PHONE}
-            </a>
-            <Link
-              href="/menu"
-              className="btn-outline border-white text-white hover:bg-white hover:text-italian-red text-base px-7 py-4 text-lg"
-            >
-              See Full Menu
-            </Link>
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <section className="bg-espresso text-parchment">
+        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 py-14 md:py-20">
+          {/* Ornamental double-border frame */}
+          <div className="border border-gold/35 px-8 py-12 md:px-16 md:py-16 relative">
+            {/* Inner border inset */}
+            <div className="absolute inset-3 border border-gold/15 pointer-events-none" />
+            {/* Corner ornaments */}
+            <span className="absolute top-2 left-2 text-gold/40 text-[10px] leading-none select-none">✦</span>
+            <span className="absolute top-2 right-2 text-gold/40 text-[10px] leading-none select-none">✦</span>
+            <span className="absolute bottom-2 left-2 text-gold/40 text-[10px] leading-none select-none">✦</span>
+            <span className="absolute bottom-2 right-2 text-gold/40 text-[10px] leading-none select-none">✦</span>
+
+            {/* Provenance line */}
+            <p className="font-sans text-gold/70 text-[9px] font-semibold uppercase tracking-[0.35em] text-center mb-3">
+              Famiglia Ferin &nbsp;&middot;&nbsp; Clive, Iowa &nbsp;&middot;&nbsp; Dal&nbsp;1996
+            </p>
+
+            {/* Decorative rule */}
+            <div className="flex items-center justify-center gap-3 mb-7">
+              <div className="w-16 h-px bg-gold/25" />
+              <span className="text-gold/50 text-[10px]">✦</span>
+              <div className="w-16 h-px bg-gold/25" />
+            </div>
+
+            {/* Main title */}
+            <h1 className="font-display text-6xl md:text-8xl italic text-cream text-center leading-none mb-4">
+              A Taste of Italy
+            </h1>
+
+            {/* Subtitle pill */}
+            <p className="font-sans text-gold/60 text-center uppercase tracking-[0.3em] text-[9px] md:text-[10px] mb-3">
+              Family Deli &amp; Italian Market &nbsp;&middot;&nbsp; Fresh Sandwiches Daily
+            </p>
+
+            {/* Second decorative rule */}
+            <div className="flex items-center justify-center gap-3 mb-9">
+              <div className="w-16 h-px bg-gold/25" />
+              <span className="text-gold/50 text-[10px]">✦</span>
+              <div className="w-16 h-px bg-gold/25" />
+            </div>
+
+            <p className="font-serif text-cream/75 text-lg md:text-xl text-center max-w-2xl mx-auto leading-relaxed mb-10">
+              Todd Ferin&rsquo;s neighborhood deli and Italian market has kept Clive
+              and greater Des Moines fed since June 1996 — Chicago beef, hand-rolled
+              meatballs, Graziano&rsquo;s sausage, and an Italian grocery counter
+              you won&rsquo;t find anywhere else in Iowa.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a href={PHONE_HREF} className="btn-cream px-8 py-4 text-base">
+                <PhoneIcon />
+                {PHONE}
+              </a>
+              <Link
+                href="/menu"
+                className="inline-flex items-center justify-center gap-2 border border-parchment/25 text-cream font-sans font-semibold px-8 py-4 hover:bg-white/8 hover:border-parchment/40 transition-colors duration-150"
+              >
+                View the Menu
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── HOURS ───────────────────────────────────────────────── */}
-      <section className="bg-cream-dark border-b border-gray-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      {/* ── HOURS ────────────────────────────────────────────────────────── */}
+      <section className="bg-parchment-dark border-y-2 border-gold/25">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-              <h2 className="section-title text-2xl mb-1">Hours</h2>
-              <div className="section-divider" />
+            <div className="flex-shrink-0">
+              <p className="font-sans text-[9px] font-semibold text-gold uppercase tracking-[0.25em] mb-0.5">
+                We&rsquo;re Open
+              </p>
+              <h2 className="font-display text-3xl italic text-charcoal leading-tight">
+                Store Hours
+              </h2>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-x-8 gap-y-2 text-sm">
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-x-6 gap-y-3">
               {DAYS_ORDER.map((day) => {
                 const time = hours[day] ?? 'Closed'
                 const isClosed = time === 'Closed'
-                const shortDay = day.slice(0, 3)
                 return (
                   <div key={day} className="flex flex-col">
-                    <span className="font-sans font-semibold text-charcoal text-xs uppercase tracking-wide">
-                      {shortDay}
+                    <span className="font-sans font-semibold text-charcoal text-[9px] uppercase tracking-wider">
+                      {day.slice(0, 3)}
                     </span>
-                    <span
-                      className={`font-sans text-xs mt-0.5 ${
-                        isClosed ? 'text-gray-400' : 'text-charcoal'
-                      }`}
-                    >
+                    <span className={`font-sans text-xs mt-0.5 ${isClosed ? 'text-charcoal/30' : 'text-charcoal/70'}`}>
                       {isClosed ? 'Closed' : time.replace(' – ', '–')}
                     </span>
                   </div>
@@ -150,96 +168,117 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── DELI PILLARS ────────────────────────────────────────── */}
-      <section className="bg-white border-b border-gray-200 py-12">
+      {/* ── DELI IDENTITY PILLARS ─────────────────────────────────────────── */}
+      <section className="bg-olive text-parchment py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-            <div className="flex items-start gap-4 py-6 md:py-0 md:pr-10">
-              <div className="flex-shrink-0 w-10 h-10 bg-italian-red rounded-sm flex items-center justify-center text-white">
+          {/* Section header */}
+          <div className="text-center mb-12">
+            <p className="font-sans text-gold/60 text-[9px] uppercase tracking-[0.35em] mb-3">
+              What Makes Us Different
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl italic text-cream leading-tight">
+              A Real Family Deli
+            </h2>
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <div className="w-14 h-px bg-gold/35" />
+              <span className="text-gold/50 text-[10px]">✦</span>
+              <div className="w-14 h-px bg-gold/35" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gold/20">
+            <div className="flex flex-col items-center text-center py-10 md:py-0 md:px-10">
+              <div className="w-12 h-12 border border-gold/35 flex items-center justify-center text-gold mb-6">
                 <OwnerIcon />
               </div>
-              <div>
-                <h3 className="font-serif text-lg text-charcoal mb-1">
-                  Owner Behind the Counter
-                </h3>
-                <p className="font-sans text-sm text-gray-600 leading-relaxed">
-                  Todd Ferin makes every sandwich himself — same face, same
-                  care, every single day since 1996.
-                </p>
-              </div>
+              <h3 className="font-serif text-xl text-cream mb-3">
+                Owner Behind the Counter
+              </h3>
+              <p className="font-sans text-sm text-parchment/55 leading-relaxed">
+                Todd Ferin makes every sandwich himself — same hands, same
+                recipes, every single day since 1996. That&rsquo;s not something
+                a chain can offer.
+              </p>
             </div>
-            <div className="flex items-start gap-4 py-6 md:py-0 md:px-10">
-              <div className="flex-shrink-0 w-10 h-10 bg-italian-red rounded-sm flex items-center justify-center text-white">
+
+            <div className="flex flex-col items-center text-center py-10 md:py-0 md:px-10">
+              <div className="w-12 h-12 border border-gold/35 flex items-center justify-center text-gold mb-6">
                 <LocalIcon />
               </div>
-              <div>
-                <h3 className="font-serif text-lg text-charcoal mb-1">
-                  Locally Sourced
-                </h3>
-                <p className="font-sans text-sm text-gray-600 leading-relaxed">
-                  Graziano Brothers sausage from right here in Des Moines.
-                  Fresh-baked rolls. No shortcuts on ingredients.
-                </p>
-              </div>
+              <h3 className="font-serif text-xl text-cream mb-3">
+                Iowa&rsquo;s Own Ingredients
+              </h3>
+              <p className="font-sans text-sm text-parchment/55 leading-relaxed">
+                Graziano Brothers sausage sourced right here in Des Moines,
+                fresh-baked rolls, and hand-selected imported Italian meats
+                and cheeses — no shortcuts.
+              </p>
             </div>
-            <div className="flex items-start gap-4 py-6 md:py-0 md:pl-10">
-              <div className="flex-shrink-0 w-10 h-10 bg-italian-red rounded-sm flex items-center justify-center text-white">
+
+            <div className="flex flex-col items-center text-center py-10 md:py-0 md:px-10">
+              <div className="w-12 h-12 border border-gold/35 flex items-center justify-center text-gold mb-6">
                 <FreshIcon />
               </div>
-              <div>
-                <h3 className="font-serif text-lg text-charcoal mb-1">
-                  Made to Order
-                </h3>
-                <p className="font-sans text-sm text-gray-600 leading-relaxed">
-                  Every sandwich is built fresh when you order it. Nothing
-                  pre-made, nothing sitting under a lamp.
-                </p>
-              </div>
+              <h3 className="font-serif text-xl text-cream mb-3">
+                Made to Order, Daily
+              </h3>
+              <p className="font-sans text-sm text-parchment/55 leading-relaxed">
+                Every sandwich is built fresh when you order it. No heat lamps,
+                no pre-made trays, no shortcuts. Just the real thing, made right.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── FEATURED ITEMS ──────────────────────────────────────── */}
+      {/* ── HOUSE FAVORITES ──────────────────────────────────────────────── */}
       {featuredItems.length > 0 && (
-        <section className="py-16">
+        <section className="py-16 bg-parchment">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="font-sans text-gold text-[9px] font-semibold uppercase tracking-[0.3em] mb-2">
+              From Todd&rsquo;s Kitchen
+            </p>
             <h2 className="section-title mb-2">House Favorites</h2>
             <div className="section-divider" />
-            <p className="font-sans text-gray-600 mb-10 max-w-xl">
+            <p className="font-sans text-charcoal/55 mb-10 max-w-xl">
               The sandwiches that have kept Clive coming back for nearly three
-              decades. Each one made fresh to order.
+              decades — every one made fresh to order.
             </p>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredItems.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white border border-gray-200 rounded-sm p-6 flex flex-col"
+                  className="bg-white border border-parchment-dark p-6 flex flex-col relative"
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-sans text-xs font-semibold text-italian-red uppercase tracking-widest">
+                  {/* Inset border accent */}
+                  <div className="absolute inset-2.5 border border-parchment-dark/40 pointer-events-none" />
+
+                  <div className="flex items-center justify-between mb-3 relative z-10">
+                    <span className="font-sans text-[9px] font-semibold text-gold uppercase tracking-[0.2em]">
                       {item.category}
                     </span>
-                    <span className="badge-fresh text-[10px] px-2 py-0.5">
+                    <span className="badge-fresh text-[9px] px-2 py-0.5">
                       Fresh
                     </span>
                   </div>
-                  <h3 className="font-serif text-xl text-charcoal mb-2">
+                  <h3 className="font-serif text-xl text-charcoal mb-2 relative z-10">
                     {item.item_name}
                   </h3>
                   {item.description && (
-                    <p className="font-sans text-sm text-gray-600 leading-relaxed flex-1">
+                    <p className="font-sans text-sm text-charcoal/55 leading-relaxed flex-1 relative z-10">
                       {item.description}
                     </p>
                   )}
                   {item.price && (
-                    <p className="font-sans font-semibold text-italian-red mt-4">
+                    <p className="font-display text-2xl italic text-italian-red mt-4 relative z-10">
                       ${item.price}
                     </p>
                   )}
                 </div>
               ))}
             </div>
+
             <div className="mt-10 text-center">
               <Link href="/menu" className="btn-primary">
                 View Full Menu
@@ -249,28 +288,40 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── CATEGORY CARDS ──────────────────────────────────────── */}
-      <section className="bg-cream-dark py-16">
+      {/* ── FROM THE DELI COUNTER ─────────────────────────────────────────── */}
+      <section className="bg-espresso py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title mb-2">From the Deli Counter</h2>
-          <div className="section-divider mb-10" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="text-center mb-12">
+            <p className="font-sans text-gold/60 text-[9px] uppercase tracking-[0.35em] mb-3">
+              What We Carry
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl italic text-cream leading-tight">
+              From the Deli Counter
+            </h2>
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <div className="w-14 h-px bg-gold/25" />
+              <span className="text-gold/45 text-[10px]">✦</span>
+              <div className="w-14 h-px bg-gold/25" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {CATEGORY_CARDS.map((card) => (
               <Link
                 key={card.title}
                 href={card.href}
-                className="group bg-white border border-gray-200 rounded-sm p-6 flex flex-col hover:border-italian-red transition-colors duration-150"
+                className="group border border-gold/20 p-6 flex flex-col hover:border-gold/45 hover:bg-white/5 transition-colors duration-150"
               >
-                <div className="w-8 h-8 text-italian-red mb-4 group-hover:text-italian-red-dark transition-colors">
+                <div className="w-8 h-8 text-gold mb-5 group-hover:text-gold-light transition-colors">
                   {card.icon}
                 </div>
-                <h3 className="font-serif text-lg text-charcoal group-hover:text-italian-red transition-colors mb-2">
+                <h3 className="font-serif text-lg text-cream group-hover:text-gold transition-colors mb-2">
                   {card.title}
                 </h3>
-                <p className="font-sans text-sm text-gray-600 leading-relaxed flex-1">
+                <p className="font-sans text-sm text-cream/45 leading-relaxed flex-1">
                   {card.desc}
                 </p>
-                <span className="mt-4 font-sans text-xs font-semibold text-italian-red uppercase tracking-wider">
+                <span className="mt-5 font-sans text-[9px] font-semibold text-gold/55 uppercase tracking-[0.2em] group-hover:text-gold transition-colors">
                   Learn more →
                 </span>
               </Link>
@@ -279,21 +330,30 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── CATERING CTA ────────────────────────────────────────── */}
-      <section className="bg-olive text-white py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      {/* ── CATERING CTA ─────────────────────────────────────────────────── */}
+      <section className="bg-italian-red text-parchment py-16 relative overflow-hidden">
+        {/* Inset decorative border */}
+        <div className="absolute inset-5 border border-parchment/10 pointer-events-none" />
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-8 relative">
           <div>
-            <h2 className="font-serif text-3xl mb-2">Catering for Any Occasion</h2>
-            <p className="font-sans text-green-100 max-w-lg leading-relaxed">
-              Deli trays from $3.95/person, 6-foot subs from $15/ft, and custom
-              box lunches. Perfect for office parties, family gatherings, and
-              corporate events. 48-hour notice appreciated.
+            <p className="font-sans text-parchment/45 text-[9px] uppercase tracking-[0.3em] mb-2">
+              Private Events &amp; Corporate
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl italic text-cream mb-4">
+              Catering for Any Occasion
+            </h2>
+            <p className="font-sans text-parchment/65 max-w-lg leading-relaxed">
+              Deli trays from $3.95/person, 6-foot subs, custom box lunches,
+              and antipasto spreads. Todd brings the same quality to your event
+              that he brings every day behind the counter. 48-hour notice
+              appreciated.
             </p>
           </div>
           <div className="flex-shrink-0">
             <Link
               href="/catering"
-              className="inline-flex items-center justify-center gap-2 bg-white text-olive font-sans font-semibold px-7 py-4 rounded-sm hover:bg-cream transition-colors duration-150"
+              className="inline-flex items-center justify-center gap-2 border border-parchment/35 bg-parchment/10 text-cream font-sans font-semibold px-8 py-4 hover:bg-parchment hover:text-italian-red transition-colors duration-150"
             >
               Request a Quote
             </Link>
@@ -301,26 +361,37 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ────────────────────────────────────────── */}
-      <section className="py-16">
+      {/* ── TESTIMONIALS ─────────────────────────────────────────────────── */}
+      <section className="py-16 bg-parchment-dark">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title mb-2">What the Regulars Say</h2>
+          <p className="font-sans text-gold text-[9px] font-semibold uppercase tracking-[0.3em] mb-2">
+            Our Regulars
+          </p>
+          <h2 className="section-title mb-2">What People Are Saying</h2>
           <div className="section-divider mb-10" />
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((t) => (
               <figure
                 key={t.author}
-                className="bg-cream-dark border border-gray-200 rounded-sm p-6"
+                className="bg-parchment border border-parchment-dark p-6 relative overflow-hidden"
               >
-                <div className="flex gap-0.5 mb-3">
+                {/* Oversized decorative quotation mark */}
+                <span
+                  className="font-display text-9xl italic text-gold/12 leading-none absolute -top-2 left-2 select-none"
+                  aria-hidden="true"
+                >
+                  &ldquo;
+                </span>
+                <div className="flex gap-0.5 mb-4 relative z-10">
                   {Array.from({ length: t.stars }).map((_, i) => (
                     <StarIcon key={i} />
                   ))}
                 </div>
-                <blockquote className="font-sans text-sm text-gray-700 leading-relaxed mb-4">
+                <blockquote className="font-serif text-sm italic text-charcoal/75 leading-relaxed mb-4 relative z-10">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <figcaption className="font-sans text-xs font-semibold text-charcoal uppercase tracking-wide">
+                <figcaption className="font-sans text-[9px] font-semibold text-charcoal/45 uppercase tracking-widest relative z-10">
                   — {t.author}
                 </figcaption>
               </figure>
@@ -329,17 +400,22 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── LOCATION STRIP ──────────────────────────────────────── */}
-      <section className="bg-charcoal text-white py-12">
+      {/* ── LOCATION STRIP ────────────────────────────────────────────────── */}
+      <section className="bg-espresso text-parchment py-14">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <p className="font-serif text-2xl mb-1">Come Find Us in Clive</p>
-            <p className="font-sans text-gray-400 text-sm">
-              8421 University Blvd Suite D · Clive, IA 50325
+          <div className="text-center sm:text-left">
+            <p className="font-sans text-gold/50 text-[9px] uppercase tracking-[0.25em] mb-1">
+              Trovaci in Iowa
+            </p>
+            <p className="font-display text-3xl italic text-cream mb-1">
+              Come Find Us in Clive
+            </p>
+            <p className="font-sans text-parchment/35 text-sm">
+              8421 University Blvd Suite D &nbsp;&middot;&nbsp; Clive, IA 50325
             </p>
           </div>
           <div className="flex gap-3">
-            <a href={PHONE_HREF} className="btn-primary">
+            <a href={PHONE_HREF} className="btn-cream">
               <PhoneIcon />
               Call to Order
             </a>
@@ -347,7 +423,7 @@ export default async function HomePage() {
               href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline border-gray-500 text-gray-300 hover:bg-gray-700 hover:border-gray-500"
+              className="inline-flex items-center justify-center gap-2 border border-gold/30 text-gold font-sans font-semibold px-6 py-3 hover:bg-gold/10 transition-colors"
             >
               <PinIcon />
               Directions
@@ -359,12 +435,12 @@ export default async function HomePage() {
   )
 }
 
-// ── Deli Pillar Icons ────────────────────────────────────────────────────────
+// ── Pillar Icons (rendered in green section) ──────────────────────────────
 
 function OwnerIcon() {
   return (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
     </svg>
   )
 }
@@ -372,8 +448,8 @@ function OwnerIcon() {
 function LocalIcon() {
   return (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
   )
 }
@@ -381,12 +457,12 @@ function LocalIcon() {
 function FreshIcon() {
   return (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
   )
 }
 
-// ── Category Card Icons ──────────────────────────────────────────────────────
+// ── Category Card Icons ───────────────────────────────────────────────────
 
 function HotSandwichIcon() {
   return (
@@ -402,7 +478,7 @@ function HotSandwichIcon() {
 function ColdSandwichIcon() {
   return (
     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="11" width="18" height="8" rx="2" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="3" y="11" width="18" height="8" rx="1" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 11c0-2 1.5-4 9-4s9 2 9 4" />
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 15h10" />
     </svg>
@@ -427,7 +503,7 @@ function GroceryIcon() {
   )
 }
 
-// ── Utility Icons ────────────────────────────────────────────────────────────
+// ── Utility Icons ─────────────────────────────────────────────────────────
 
 function PhoneIcon() {
   return (
@@ -448,7 +524,7 @@ function PinIcon() {
 
 function StarIcon() {
   return (
-    <svg className="w-4 h-4 text-yellow-500 fill-yellow-500" viewBox="0 0 20 20" aria-hidden="true">
+    <svg className="w-4 h-4 text-gold fill-gold" viewBox="0 0 20 20" aria-hidden="true">
       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
     </svg>
   )
