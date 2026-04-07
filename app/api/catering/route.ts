@@ -2,10 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { BUSINESS_ID } from '@/lib/supabase'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!
-)
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL ?? 'https://vyatosniqboeqzadyqmr.supabase.co',
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY
+      ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ5YXRvc25pcWJvZXF6YWR5cW1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3Nzk0NTcsImV4cCI6MjA4OTM1NTQ1N30.suASHLVzV_UCsWjXc1qV_E298kLzKu7lb6h4efpgdAQ'
+  )
+}
 import { Resend } from 'resend'
 
 const CATERING_INQUIRY_EMAIL =
@@ -43,7 +47,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Insert into Supabase
-  const { error: dbError } = await supabase.from('catering_inquiries').insert({
+  const { error: dbError } = await getSupabase().from('catering_inquiries').insert({
     business_id: BUSINESS_ID,
     name,
     email,
