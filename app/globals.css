@@ -16,6 +16,19 @@
   }
 }
 
+@layer utilities {
+  /* scrollbar-hide — used by MenuClient's category tab nav.
+     The tailwind-scrollbar-hide plugin is not installed, so we define it
+     directly here.  Keeps the nav scrollable but hides the OS scrollbar. */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @layer components {
   /* ── Buttons ─────────────────────────────────────────────────────────────
      No rounded corners — sharp edges suit the vintage print aesthetic.    */
