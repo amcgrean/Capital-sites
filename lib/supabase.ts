@@ -4,9 +4,12 @@ import { createClient as _createClient } from '@supabase/supabase-js'
 // so a missing env var during `next build` won't crash static page collection.
 let _supabase: ReturnType<typeof _createClient> | null = null
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? 'https://vyatosniqboeqzadyqmr.supabase.co'
-const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  ?? process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY
+// Server-side only — intentionally use private (non-NEXT_PUBLIC_) var names so
+// that placeholder NEXT_PUBLIC_* values in Vercel's dashboard don't override
+// the hardcoded defaults below.  If you configure this project for a new
+// Supabase instance, set SUPABASE_URL / SUPABASE_ANON_KEY in Vercel instead.
+const SUPABASE_URL = process.env.SUPABASE_URL ?? 'https://vyatosniqboeqzadyqmr.supabase.co'
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY
   ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ5YXRvc25pcWJvZXF6YWR5cW1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3Nzk0NTcsImV4cCI6MjA4OTM1NTQ1N30.suASHLVzV_UCsWjXc1qV_E298kLzKu7lb6h4efpgdAQ'
 
 function getSupabase() {
@@ -16,7 +19,7 @@ function getSupabase() {
   return _supabase
 }
 
-export const BUSINESS_ID = process.env.NEXT_PUBLIC_BUSINESS_ID ?? 'ad17c740-7d6e-4884-b948-cab4a9cc8ffd'
+export const BUSINESS_ID = process.env.BUSINESS_ID ?? 'ad17c740-7d6e-4884-b948-cab4a9cc8ffd'
 
 // Types
 
