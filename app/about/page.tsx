@@ -177,7 +177,7 @@ export default function AboutPage() {
         {/* Community roots */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {[
-            { stat: '28+', label: 'Years Serving Clive & Des Moines' },
+            { stat: '29+', label: 'Years Serving Clive & Des Moines' },
             { stat: '5', label: 'Menu Categories, Hundreds of Loyal Regulars' },
             { stat: '1', label: 'Owner. One Standard. Excellence.' },
           ].map(({ stat, label }) => (

@@ -42,23 +42,27 @@ const TESTIMONIALS = [
 const CATEGORY_CARDS = [
   {
     title: 'Hot Sandwiches',
-    desc: 'Chicago beef, meatball, Graziano\'s sausage — our house specialties, made fresh daily.',
+    desc: "Chicago beef, meatball, Graziano's sausage — our house specialties, made to order every day.",
     href: '/menu#hot-sandwiches',
+    icon: <HotSandwichIcon />,
   },
   {
     title: 'Cold Sandwiches',
     desc: 'The classic Italian hoagie and more, stacked with premium deli meats and provolone.',
     href: '/menu#cold-sandwiches',
+    icon: <ColdSandwichIcon />,
   },
   {
     title: 'Deli Trays & Catering',
     desc: '6-foot subs, box lunches, and antipasto trays for events of any size.',
     href: '/catering',
+    icon: <CateringIcon />,
   },
   {
     title: 'Italian Grocery',
-    desc: 'Graziano\'s sausage, house marinara, imported pasta, and more to take home.',
+    desc: "Graziano's sausage, house marinara, imported pasta, and more to take home.",
     href: '/menu#grocery',
+    icon: <GroceryIcon />,
   },
 ]
 
@@ -75,16 +79,25 @@ export default async function HomePage() {
       {/* ── HERO ────────────────────────────────────────────────── */}
       <section className="bg-italian-red text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <p className="font-sans text-red-300 text-sm font-semibold uppercase tracking-widest mb-3">
-            Est. June 1, 1996
-          </p>
+          <div className="flex flex-wrap items-center gap-3 mb-5">
+            <span className="badge-fresh">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-300 inline-block" />
+              Made to Order · Fresh Daily
+            </span>
+            <span className="font-sans text-red-300 text-xs font-semibold uppercase tracking-widest">
+              Est. June 1, 1996
+            </span>
+          </div>
           <h1 className="font-serif text-4xl md:text-6xl leading-tight mb-5 max-w-2xl">
-            Authentic Italian Deli in Clive, Iowa
+            Your Neighborhood<br className="hidden sm:block" /> Italian Deli
           </h1>
-          <p className="font-sans text-red-100 text-lg md:text-xl max-w-xl leading-relaxed mb-8">
-            Chicago beef, house-made meatballs, Graziano&rsquo;s sausage, and the
-            best Italian hoagie in Des Moines — crafted by owner Todd Ferin
-            every single day.
+          <p className="font-sans text-red-100 text-lg md:text-xl max-w-xl leading-relaxed mb-3">
+            Todd Ferin has been behind the counter every day since 1996 —
+            building Chicago beef, meatball subs, and Graziano&rsquo;s sausage
+            sandwiches fresh to order for Clive and Des Moines.
+          </p>
+          <p className="font-sans text-red-300 text-sm mb-8">
+            No chains. No heat lamps. Just a real neighborhood deli.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <a
@@ -94,15 +107,12 @@ export default async function HomePage() {
               <PhoneIcon />
               {PHONE}
             </a>
-            <a
-              href={MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/menu"
               className="btn-outline border-white text-white hover:bg-white hover:text-italian-red text-base px-7 py-4 text-lg"
             >
-              <PinIcon />
-              Get Directions
-            </a>
+              See Full Menu
+            </Link>
           </div>
         </div>
       </section>
@@ -140,6 +150,56 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── DELI PILLARS ────────────────────────────────────────── */}
+      <section className="bg-white border-b border-gray-200 py-12">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+            <div className="flex items-start gap-4 py-6 md:py-0 md:pr-10">
+              <div className="flex-shrink-0 w-10 h-10 bg-italian-red rounded-sm flex items-center justify-center text-white">
+                <OwnerIcon />
+              </div>
+              <div>
+                <h3 className="font-serif text-lg text-charcoal mb-1">
+                  Owner Behind the Counter
+                </h3>
+                <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  Todd Ferin makes every sandwich himself — same face, same
+                  care, every single day since 1996.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 py-6 md:py-0 md:px-10">
+              <div className="flex-shrink-0 w-10 h-10 bg-italian-red rounded-sm flex items-center justify-center text-white">
+                <LocalIcon />
+              </div>
+              <div>
+                <h3 className="font-serif text-lg text-charcoal mb-1">
+                  Locally Sourced
+                </h3>
+                <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  Graziano Brothers sausage from right here in Des Moines.
+                  Fresh-baked rolls. No shortcuts on ingredients.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 py-6 md:py-0 md:pl-10">
+              <div className="flex-shrink-0 w-10 h-10 bg-italian-red rounded-sm flex items-center justify-center text-white">
+                <FreshIcon />
+              </div>
+              <div>
+                <h3 className="font-serif text-lg text-charcoal mb-1">
+                  Made to Order
+                </h3>
+                <p className="font-sans text-sm text-gray-600 leading-relaxed">
+                  Every sandwich is built fresh when you order it. Nothing
+                  pre-made, nothing sitting under a lamp.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── FEATURED ITEMS ──────────────────────────────────────── */}
       {featuredItems.length > 0 && (
         <section className="py-16">
@@ -148,7 +208,7 @@ export default async function HomePage() {
             <div className="section-divider" />
             <p className="font-sans text-gray-600 mb-10 max-w-xl">
               The sandwiches that have kept Clive coming back for nearly three
-              decades.
+              decades. Each one made fresh to order.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredItems.map((item) => (
@@ -156,9 +216,14 @@ export default async function HomePage() {
                   key={item.id}
                   className="bg-white border border-gray-200 rounded-sm p-6 flex flex-col"
                 >
-                  <span className="font-sans text-xs font-semibold text-italian-red uppercase tracking-widest mb-2">
-                    {item.category}
-                  </span>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-sans text-xs font-semibold text-italian-red uppercase tracking-widest">
+                      {item.category}
+                    </span>
+                    <span className="badge-fresh text-[10px] px-2 py-0.5">
+                      Fresh
+                    </span>
+                  </div>
                   <h3 className="font-serif text-xl text-charcoal mb-2">
                     {item.item_name}
                   </h3>
@@ -187,7 +252,7 @@ export default async function HomePage() {
       {/* ── CATEGORY CARDS ──────────────────────────────────────── */}
       <section className="bg-cream-dark py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title mb-2">What We Offer</h2>
+          <h2 className="section-title mb-2">From the Deli Counter</h2>
           <div className="section-divider mb-10" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {CATEGORY_CARDS.map((card) => (
@@ -196,6 +261,9 @@ export default async function HomePage() {
                 href={card.href}
                 className="group bg-white border border-gray-200 rounded-sm p-6 flex flex-col hover:border-italian-red transition-colors duration-150"
               >
+                <div className="w-8 h-8 text-italian-red mb-4 group-hover:text-italian-red-dark transition-colors">
+                  {card.icon}
+                </div>
                 <h3 className="font-serif text-lg text-charcoal group-hover:text-italian-red transition-colors mb-2">
                   {card.title}
                 </h3>
@@ -236,7 +304,7 @@ export default async function HomePage() {
       {/* ── TESTIMONIALS ────────────────────────────────────────── */}
       <section className="py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title mb-2">What People Are Saying</h2>
+          <h2 className="section-title mb-2">What the Regulars Say</h2>
           <div className="section-divider mb-10" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((t) => (
@@ -265,7 +333,7 @@ export default async function HomePage() {
       <section className="bg-charcoal text-white py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <p className="font-serif text-2xl mb-1">Find Us in Clive</p>
+            <p className="font-serif text-2xl mb-1">Come Find Us in Clive</p>
             <p className="font-sans text-gray-400 text-sm">
               8421 University Blvd Suite D · Clive, IA 50325
             </p>
@@ -273,7 +341,7 @@ export default async function HomePage() {
           <div className="flex gap-3">
             <a href={PHONE_HREF} className="btn-primary">
               <PhoneIcon />
-              Call Now
+              Call to Order
             </a>
             <a
               href={MAPS_URL}
@@ -290,6 +358,76 @@ export default async function HomePage() {
     </>
   )
 }
+
+// ── Deli Pillar Icons ────────────────────────────────────────────────────────
+
+function OwnerIcon() {
+  return (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+    </svg>
+  )
+}
+
+function LocalIcon() {
+  return (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+  )
+}
+
+function FreshIcon() {
+  return (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  )
+}
+
+// ── Category Card Icons ──────────────────────────────────────────────────────
+
+function HotSandwichIcon() {
+  return (
+    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8C8 10 5.9 16.17 3.82 19h16.36C18.1 16.17 16 10 7 8" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 19h14M5 21h14" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 2c0 2-2 3-2 5" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 4c0 2-2 3-2 5" />
+    </svg>
+  )
+}
+
+function ColdSandwichIcon() {
+  return (
+    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3" y="11" width="18" height="8" rx="2" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 11c0-2 1.5-4 9-4s9 2 9 4" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 15h10" />
+    </svg>
+  )
+}
+
+function CateringIcon() {
+  return (
+    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 13h18" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13V7a7 7 0 0114 0v6" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 17h18v2H3z" />
+    </svg>
+  )
+}
+
+function GroceryIcon() {
+  return (
+    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+    </svg>
+  )
+}
+
+// ── Utility Icons ────────────────────────────────────────────────────────────
 
 function PhoneIcon() {
   return (
