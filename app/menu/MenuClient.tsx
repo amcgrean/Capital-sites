@@ -51,14 +51,14 @@ export default function MenuClient({ grouped, categories }: Props) {
       {/* Sticky category tabs */}
       <div className="sticky top-16 z-40 bg-cream -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pb-0 border-b border-gray-200 mb-10">
         <nav
-          className="flex gap-1 overflow-x-auto scrollbar-hide"
+          className="flex overflow-x-auto scrollbar-hide lg:overflow-visible lg:justify-between"
           aria-label="Menu categories"
         >
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => scrollTo(cat)}
-              className={`flex-shrink-0 font-sans text-sm font-medium px-4 py-3 border-b-2 transition-colors duration-150 whitespace-nowrap focus:outline-none ${
+              className={`flex-shrink-0 font-sans text-xs lg:text-sm font-medium px-3 py-3 border-b-2 transition-colors duration-150 whitespace-nowrap focus:outline-none ${
                 activeCategory === cat
                   ? 'border-italian-red text-italian-red'
                   : 'border-transparent text-gray-500 hover:text-charcoal'
@@ -93,11 +93,11 @@ export default function MenuClient({ grouped, categories }: Props) {
                 <div className="w-12 h-0.5 bg-italian-red mt-3" />
               </div>
 
-              {/* Featured items */}
+              {/* Featured / House Special items */}
               {featured.length > 0 && (
                 <div className="mb-8">
-                  <p className="font-sans text-xs font-semibold text-italian-red uppercase tracking-widest mb-4">
-                    House Favorites
+                  <p className="font-sans text-xs font-semibold text-gold uppercase tracking-widest mb-4">
+                    ★ House Special
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {featured.map((item) => (
@@ -121,7 +121,7 @@ export default function MenuClient({ grouped, categories }: Props) {
       </div>
 
       {/* Catering callout */}
-      <div className="mt-20 bg-italian-red text-white rounded-sm p-8 text-center">
+      <div className="mt-20 bg-italian-red text-white p-8 text-center">
         <h3 className="font-serif text-2xl mb-2">Need to Feed a Crowd?</h3>
         <p className="font-sans text-red-100 mb-6">
           We offer full catering — deli trays, 6-foot subs, box lunches, and
@@ -130,13 +130,13 @@ export default function MenuClient({ grouped, categories }: Props) {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
             href="tel:5152210743"
-            className="inline-flex items-center justify-center gap-2 bg-white text-italian-red font-sans font-semibold px-6 py-3 rounded-sm hover:bg-cream-dark transition-colors"
+            className="inline-flex items-center justify-center gap-2 bg-white text-italian-red font-sans font-semibold px-6 py-3 hover:bg-cream-dark transition-colors"
           >
             Call 515-221-0743
           </a>
           <a
             href="/catering"
-            className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-sans font-semibold px-6 py-3 rounded-sm hover:bg-italian-red-dark transition-colors"
+            className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-sans font-semibold px-6 py-3 hover:bg-italian-red-dark transition-colors"
           >
             Catering Inquiry
           </a>
@@ -155,9 +155,9 @@ function MenuItemCard({
 }) {
   return (
     <div
-      className={`p-5 rounded-sm flex flex-col ${
+      className={`p-5 flex flex-col ${
         highlight
-          ? 'bg-white border-2 border-italian-red'
+          ? 'bg-parchment border-2 border-gold'
           : 'bg-white border border-gray-200'
       }`}
     >
@@ -168,8 +168,8 @@ function MenuItemCard({
               {item.item_name}
             </h3>
             {highlight && (
-              <span className="font-sans text-xs font-semibold text-italian-red bg-red-50 px-2 py-0.5 rounded-full flex-shrink-0">
-                ★ Favorite
+              <span className="font-sans text-xs font-semibold text-espresso bg-gold/25 px-2 py-0.5 flex-shrink-0">
+                ★ House Special
               </span>
             )}
           </div>

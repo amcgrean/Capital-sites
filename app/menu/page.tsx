@@ -17,7 +17,6 @@ export default async function MenuPage() {
   const CATEGORY_ORDER = [
     'Classic Sandwiches',
     'Premium Sandwiches',
-    'House Special',
     'Specialty Sandwiches',
     'Soup & Salads',
     'Hot Sandwiches',
@@ -34,6 +33,17 @@ export default async function MenuPage() {
       grouped[item.category] = []
     }
     grouped[item.category].push(item)
+  }
+
+  // Merge "House Special" into "Specialty Sandwiches", marking those items as featured
+  // so they render with the gold "★ House Special" card treatment.
+  if (grouped['House Special']) {
+    const houseItems = grouped['House Special'].map((item) => ({ ...item, featured: true }))
+    grouped['Specialty Sandwiches'] = [
+      ...houseItems,
+      ...(grouped['Specialty Sandwiches'] ?? []),
+    ]
+    delete grouped['House Special']
   }
 
   // Sort categories by preferred order, then alphabetically
