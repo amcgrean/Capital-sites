@@ -29,7 +29,7 @@ export default function Header() {
               A Taste of Italy
             </span>
             <span className="font-sans text-red-200 text-xs tracking-wide uppercase">
-              Italian Deli · Clive, Iowa
+              Fresh Sandwiches · Clive, Iowa
             </span>
           </Link>
 

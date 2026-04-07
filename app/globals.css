@@ -44,4 +44,12 @@
   .field-input {
     @apply w-full font-sans text-sm text-charcoal bg-white border border-gray-300 rounded-sm px-3 py-2.5 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-italian-red focus:border-transparent transition-colors duration-150;
   }
+
+  .badge-fresh {
+    @apply inline-flex items-center gap-1.5 bg-basil text-white font-sans text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide;
+  }
+
+  .badge-local {
+    @apply inline-flex items-center gap-1.5 bg-olive text-white font-sans text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide;
+  }
 }

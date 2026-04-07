@@ -17,6 +17,8 @@ const config: Config = {
         'olive': '#4A5240',
         'olive-light': '#5C6650',
         'charcoal': '#1C1C1C',
+        'basil': '#2E6B45',
+        'basil-dark': '#235538',
       },
       fontFamily: {
         serif: ['var(--font-playfair)', 'Georgia', 'serif'],
