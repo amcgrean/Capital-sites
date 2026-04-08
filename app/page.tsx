@@ -168,69 +168,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── DELI IDENTITY PILLARS ─────────────────────────────────────────── */}
-      <section className="bg-olive text-parchment py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section header */}
-          <div className="text-center mb-12">
-            <p className="font-sans text-gold/60 text-[9px] uppercase tracking-[0.35em] mb-3">
-              What Makes Us Different
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl italic text-cream leading-tight">
-              A Real Family Deli
-            </h2>
-            <div className="flex items-center justify-center gap-3 mt-4">
-              <div className="w-14 h-px bg-gold/35" />
-              <span className="text-gold/50 text-[10px]">✦</span>
-              <div className="w-14 h-px bg-gold/35" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gold/20">
-            <div className="flex flex-col items-center text-center py-10 md:py-0 md:px-10">
-              <div className="w-12 h-12 border border-gold/35 flex items-center justify-center text-gold mb-6">
-                <OwnerIcon />
-              </div>
-              <h3 className="font-serif text-xl text-cream mb-3">
-                Owner Behind the Counter
-              </h3>
-              <p className="font-sans text-sm text-parchment/55 leading-relaxed">
-                Todd Ferin makes every sandwich himself — same hands, same
-                recipes, every single day since 1996. That&rsquo;s not something
-                a chain can offer.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center py-10 md:py-0 md:px-10">
-              <div className="w-12 h-12 border border-gold/35 flex items-center justify-center text-gold mb-6">
-                <LocalIcon />
-              </div>
-              <h3 className="font-serif text-xl text-cream mb-3">
-                Iowa&rsquo;s Own Ingredients
-              </h3>
-              <p className="font-sans text-sm text-parchment/55 leading-relaxed">
-                Graziano Brothers sausage sourced right here in Des Moines,
-                fresh-baked rolls, and hand-selected imported Italian meats
-                and cheeses — no shortcuts.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center py-10 md:py-0 md:px-10">
-              <div className="w-12 h-12 border border-gold/35 flex items-center justify-center text-gold mb-6">
-                <FreshIcon />
-              </div>
-              <h3 className="font-serif text-xl text-cream mb-3">
-                Made to Order, Daily
-              </h3>
-              <p className="font-sans text-sm text-parchment/55 leading-relaxed">
-                Every sandwich is built fresh when you order it. No heat lamps,
-                no pre-made trays, no shortcuts. Just the real thing, made right.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── HOUSE FAVORITES ──────────────────────────────────────────────── */}
       {featuredItems.length > 0 && (
         <section className="py-16 bg-parchment">
@@ -432,33 +369,6 @@ export default async function HomePage() {
         </div>
       </section>
     </>
-  )
-}
-
-// ── Pillar Icons (rendered in green section) ──────────────────────────────
-
-function OwnerIcon() {
-  return (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-    </svg>
-  )
-}
-
-function LocalIcon() {
-  return (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-    </svg>
-  )
-}
-
-function FreshIcon() {
-  return (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
   )
 }
 
