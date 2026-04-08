@@ -10,19 +10,19 @@ export const metadata: Metadata = {
 const SIGNATURES = [
   {
     name: 'Chicago Beef',
-    desc: 'Slow-roasted Italian beef, thinly sliced and served with au jus for dipping — the signature sandwich Todd built his reputation on.',
+    desc: 'Slow-roasted Italian beef, sliced thin, served wet with au jus for dipping. The sandwich people drive across the metro for.',
   },
   {
     name: 'House Meatball Sub',
-    desc: 'Made-from-scratch meatballs in rich marinara, loaded onto a toasted hoagie roll with provolone. A regulars\' favorite for 28 years.',
+    desc: 'Made-from-scratch meatballs in house marinara on a toasted hoagie with provolone. A staple since day one.',
   },
   {
     name: "Graziano's Sausage",
-    desc: 'Iowa\'s own legendary Italian sausage from Graziano Brothers, sourced locally and grilled to perfection. A true Des Moines original.',
+    desc: "Iowa's own Italian sausage from Graziano Brothers in Des Moines, grilled and served on a fresh roll. Local through and through.",
   },
   {
     name: 'Italian Hoagie',
-    desc: 'Genoa salami, capicola, ham, and provolone on a fresh-baked roll with all the trimmings. Simple. Authentic. Perfect.',
+    desc: 'Genoa salami, capicola, ham, and provolone on a fresh-baked roll. Simple and right.',
   },
 ]
 
@@ -53,31 +53,28 @@ export default function AboutPage() {
             <div className="w-12 h-0.5 bg-italian-red mb-6" />
             <div className="font-sans text-gray-700 leading-relaxed space-y-4 text-[15px]">
               <p>
-                On June 1, 1996, Todd Ferin opened the doors of A Taste of Italy
-                in Clive, Iowa with a simple mission: bring the honest, hearty
-                flavors of an authentic Italian deli to the Des Moines area.
-                Nearly three decades later, that mission hasn&rsquo;t changed.
+                A Taste of Italy opened June 1, 1996 in Clive, Iowa. Todd Ferin
+                started it with one idea: make the kind of food you&rsquo;d find
+                at a real Italian deli — nothing watered down, nothing pre-made,
+                nothing handed off to someone who doesn&rsquo;t care.
               </p>
               <p>
-                What started as a neighborhood spot quickly became a destination.
-                Word spread about the Chicago beef — slow-roasted to perfection,
-                sliced thin, and served with au jus that&rsquo;s been refined over
-                hundreds of batches. Then about the meatballs. Then about the
-                Graziano&rsquo;s sausage sourced right here in Iowa. The Italian
-                hoagie. The deli trays.
+                Word got out fast. The Chicago beef drew people in first — slow-roasted,
+                sliced thin, served wet. Then the meatballs. Then the
+                Graziano&rsquo;s sausage, sourced right here in Des Moines.
+                People started driving in from across the metro just for lunch,
+                and they kept coming back.
               </p>
               <p>
-                Todd has been behind the counter for all of it. He knows his
-                regulars by name. He knows what they order before they say a word.
-                That kind of relationship — between a cook who cares and a
-                community that shows up — is what makes A Taste of Italy different
-                from everywhere else.
+                He&rsquo;s been behind the counter every day since. Knows the
+                regulars by name, knows what they order. That&rsquo;s the whole
+                deal — a place where the person making your food is the same
+                person who opened the doors nearly thirty years ago.
               </p>
               <p>
-                We source the best ingredients we can find. Graziano&rsquo;s Brothers
-                sausage from Des Moines. Fresh-baked rolls. Quality imported meats
-                and cheeses from the deli case. Nothing fancy — just good food
-                made right.
+                The ingredients haven&rsquo;t changed. Graziano Brothers sausage
+                from Des Moines. Fresh-baked rolls. Good imported meats and
+                cheeses. Nothing complicated — just food made right.
               </p>
             </div>
           </div>
