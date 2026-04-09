@@ -1,5 +1,21 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { getBusiness, getFeaturedMenuItems } from '@/lib/supabase'
+import JsonLd from '@/components/JsonLd'
+
+export const metadata: Metadata = {
+  title: 'A Taste of Italy | Family Italian Deli & Market in Clive, Iowa',
+  description:
+    "Todd Ferin's family-owned Italian deli and market in Clive, Iowa. Fresh sandwiches made to order — Chicago beef, meatball subs, Graziano's sausage, deli trays, and an Italian grocery counter since June 1996.",
+  alternates: { canonical: 'https://capital-sites.vercel.app' },
+  openGraph: {
+    title: 'A Taste of Italy | Family Italian Deli & Market in Clive, Iowa',
+    description:
+      "Family-owned Italian deli in Clive, Iowa since 1996. Chicago beef, meatball subs, Graziano's sausage, deli trays, and an Italian grocery counter.",
+    url: 'https://capital-sites.vercel.app',
+    type: 'website',
+  },
+}
 
 export const dynamic = 'force-dynamic'
 
@@ -39,27 +55,56 @@ const CATEGORY_CARDS = [
     title: 'Hot Sandwiches',
     desc: "Chicago beef, meatball, Graziano's sausage — house specialties made fresh to order every day.",
     href: '/menu#hot-sandwiches',
+    cta: 'See hot sandwiches →',
     icon: <HotSandwichIcon />,
   },
   {
     title: 'Cold Sandwiches',
     desc: 'Classic Italian hoagies and more, stacked with premium deli meats and imported provolone.',
     href: '/menu#cold-sandwiches',
+    cta: 'See cold sandwiches →',
     icon: <ColdSandwichIcon />,
   },
   {
     title: 'Deli Trays & Catering',
     desc: '6-foot subs, box lunches, and antipasto trays for parties and corporate events of any size.',
     href: '/catering',
+    cta: 'Get a catering quote →',
     icon: <CateringIcon />,
   },
   {
     title: 'Italian Market',
     desc: "Graziano's sausage, house marinara, imported pasta, and Italian specialty groceries to take home.",
     href: '/menu#grocery',
+    cta: 'Browse the market →',
     icon: <GroceryIcon />,
   },
 ]
+
+// AggregateRating schema — ties testimonials to the business entity
+const aggregateRatingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FoodEstablishment',
+  '@id': 'https://capital-sites.vercel.app/#business',
+  name: 'A Taste of Italy',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    bestRating: '5',
+    worstRating: '1',
+    ratingCount: '3',
+  },
+  review: TESTIMONIALS.map((t) => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: t.author },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: String(t.stars),
+      bestRating: '5',
+    },
+    reviewBody: t.quote,
+  })),
+}
 
 export default async function HomePage() {
   const [business, featuredItems] = await Promise.all([
@@ -71,6 +116,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <JsonLd schema={aggregateRatingSchema} />
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="bg-espresso text-parchment">
         <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 py-14 md:py-20">
@@ -259,7 +305,7 @@ export default async function HomePage() {
                   {card.desc}
                 </p>
                 <span className="mt-5 font-sans text-[9px] font-semibold text-gold/55 uppercase tracking-[0.2em] group-hover:text-gold transition-colors">
-                  Learn more →
+                  {card.cta}
                 </span>
               </Link>
             ))}
