@@ -58,12 +58,21 @@ export const metadata: Metadata = {
     description:
       "Clive, Iowa's Italian deli and market since 1996. Chicago beef, meatball subs, Graziano's sausage, deli trays, and an Italian grocery counter — made fresh daily.",
     url: BASE_URL,
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 800,
+        height: 450,
+        alt: 'A Taste of Italy storefront at 8421 University Blvd, Clive, Iowa',
+      },
+    ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'A Taste of Italy | Italian Deli & Market — Clive, Iowa',
     description:
       "Family-owned Italian deli in Clive, Iowa since 1996. Chicago beef, meatball subs, Graziano's sausage, deli trays, and an Italian grocery counter.",
+    images: ['/og-image.jpg'],
   },
   alternates: {
     canonical: BASE_URL,
