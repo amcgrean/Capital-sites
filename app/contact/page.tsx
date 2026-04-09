@@ -1,12 +1,32 @@
 import type { Metadata } from 'next'
 import { getBusiness } from '@/lib/supabase'
+import JsonLd from '@/components/JsonLd'
 
 export const dynamic = 'force-dynamic'
 
+const BASE_URL = 'https://capital-sites.vercel.app'
+
 export const metadata: Metadata = {
-  title: 'Contact',
+  title: 'Contact & Hours — Find Us in Clive, Iowa',
   description:
-    'Contact A Taste of Italy in Clive, Iowa — call us, find our location, or check our hours.',
+    'Contact A Taste of Italy at 8421 University Blvd Suite D, Clive, IA 50325. Call 515-221-0743. Open Mon–Fri 10:30 AM–6:00 PM, Sat 10:30 AM–5:00 PM. Get directions and hours.',
+  alternates: { canonical: `${BASE_URL}/contact` },
+  openGraph: {
+    title: 'Contact & Hours | A Taste of Italy — Clive, Iowa',
+    description:
+      'Find A Taste of Italy at 8421 University Blvd Suite D, Clive, IA. Call 515-221-0743. Mon–Fri 10:30–6, Sat 10:30–5.',
+    url: `${BASE_URL}/contact`,
+    type: 'website',
+  },
+}
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Contact', item: `${BASE_URL}/contact` },
+  ],
 }
 
 const DAYS_ORDER = [
@@ -33,6 +53,7 @@ export default async function ContactPage() {
 
   return (
     <div className="min-h-screen">
+      <JsonLd schema={breadcrumbSchema} />
       {/* Header */}
       <div className="bg-italian-red text-parchment py-14">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

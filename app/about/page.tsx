@@ -1,10 +1,30 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import JsonLd from '@/components/JsonLd'
+
+const BASE_URL = 'https://capital-sites.vercel.app'
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'Our Story — Family Italian Deli Since 1996',
   description:
-    'The story of A Taste of Italy — opened June 1, 1996 by Todd Ferin in Clive, Iowa. A Des Moines institution for authentic Italian deli food.',
+    'Todd Ferin opened A Taste of Italy on June 1, 1996 in Clive, Iowa. Nearly 30 years behind the counter — authentic Italian deli food, real ingredients, no shortcuts. A Des Moines institution.',
+  alternates: { canonical: `${BASE_URL}/about` },
+  openGraph: {
+    title: 'Our Story | A Taste of Italy — Clive, Iowa Since 1996',
+    description:
+      'Todd Ferin opened A Taste of Italy in Clive, Iowa in 1996. Authentic Italian deli — Chicago beef, meatball subs, Graziano\'s sausage. Nearly 30 years and still going strong.',
+    url: `${BASE_URL}/about`,
+    type: 'website',
+  },
+}
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Our Story', item: `${BASE_URL}/about` },
+  ],
 }
 
 const SIGNATURES = [
@@ -29,6 +49,7 @@ const SIGNATURES = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
+      <JsonLd schema={breadcrumbSchema} />
       {/* Header */}
       <div className="bg-italian-red text-parchment py-14">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,7 +102,7 @@ export default function AboutPage() {
 
           {/* Aside: quick facts */}
           <div className="lg:col-span-2">
-            <div className="bg-cream-dark border border-gray-200 rounded-sm p-7 space-y-6">
+            <div className="bg-cream-dark border border-gray-200 rounded-none p-7 space-y-6">
               <div>
                 <p className="font-sans text-xs font-semibold text-gray-400 uppercase tracking-widest mb-1">
                   Opened
@@ -134,7 +155,7 @@ export default function AboutPage() {
             {SIGNATURES.map((item) => (
               <div
                 key={item.name}
-                className="bg-white border border-gray-200 rounded-sm p-6"
+                className="bg-white border border-gray-200 rounded-none p-6"
               >
                 <h3 className="font-serif text-xl text-charcoal mb-2">
                   {item.name}
@@ -164,7 +185,7 @@ export default function AboutPage() {
               </a>
               <Link
                 href="/catering"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-sans font-semibold px-6 py-3 rounded-sm hover:bg-italian-red-dark transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-sans font-semibold px-6 py-3 rounded-none hover:bg-italian-red-dark transition-colors text-sm"
               >
                 Catering Inquiries
               </Link>
