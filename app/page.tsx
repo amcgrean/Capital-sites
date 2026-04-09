@@ -6,12 +6,12 @@ import JsonLd from '@/components/JsonLd'
 export const metadata: Metadata = {
   title: 'A Taste of Italy | Family Italian Deli & Market in Clive, Iowa',
   description:
-    "Todd Ferin's family-owned Italian deli and market in Clive, Iowa. Fresh sandwiches made to order — Chicago beef, meatball subs, Graziano's sausage, deli trays, and an Italian grocery counter since June 1996.",
+    "Family-owned Italian deli and market in Clive, Iowa since June 1996. Fresh sandwiches made to order — Chicago beef, meatball subs, Graziano's sausage, deli trays, and an Italian grocery counter you won't find anywhere else in Iowa.",
   alternates: { canonical: 'https://capital-sites.vercel.app' },
   openGraph: {
     title: 'A Taste of Italy | Family Italian Deli & Market in Clive, Iowa',
     description:
-      "Family-owned Italian deli in Clive, Iowa since 1996. Chicago beef, meatball subs, Graziano's sausage, deli trays, and an Italian grocery counter.",
+      "Clive, Iowa's Italian deli and market since 1996. Chicago beef, meatball subs, Graziano's sausage, deli trays, and an Italian grocery counter — made fresh daily.",
     url: 'https://capital-sites.vercel.app',
     type: 'website',
   },
