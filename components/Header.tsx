@@ -3,15 +3,14 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-
-const PHONE = '515-221-0743'
-const PHONE_HREF = 'tel:5152210743'
+import Logo from './Logo'
+import { PhoneIcon } from './icons'
+import { BRAND } from '@/lib/brand'
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/menu', label: 'Menu' },
-  { href: '/catering', label: 'Catering' },
   { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -20,40 +19,45 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-espresso shadow-lg">
-      {/* ── Italian flag accent strip ────────────────────────────── */}
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-cloud-dark shadow-sm">
+      {/* Thin navy + gold accent strip */}
       <div className="flex h-1">
-        <div className="flex-1 bg-[#009246]" />
-        <div className="flex-1 bg-[#F0EBE0]" />
-        <div className="flex-1 bg-[#CE2B37]" />
+        <div className="w-2/3 bg-navy" />
+        <div className="w-1/3 bg-gold" />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
 
           {/* ── Logo / Brand ─────────────────────────────────────── */}
-          <Link href="/" className="flex flex-col leading-none group">
-            <span className="font-display text-cream text-xl italic leading-tight group-hover:text-gold transition-colors duration-150">
-              A Taste of Italy
-            </span>
-            <span className="font-sans text-gold/60 text-[9px] tracking-[0.2em] uppercase mt-0.5">
-              Family Deli &amp; Market &nbsp;·&nbsp; Est.&nbsp;1996
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <Logo className="w-9 h-9 shrink-0" />
+            <span className="flex flex-col leading-none">
+              <span className="wordmark text-navy text-2xl group-hover:text-sky transition-colors duration-150">
+                Cecilia&rsquo;s Home
+              </span>
+              <span className="font-sans text-gold text-[8px] font-semibold tracking-[0.18em] uppercase mt-0.5">
+                Care&nbsp;·&nbsp;Respect&nbsp;·&nbsp;Opportunity
+              </span>
             </span>
           </Link>
 
           {/* ── Desktop nav ──────────────────────────────────────── */}
-          <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-7" aria-label="Main navigation">
             {navLinks.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className={`font-sans text-sm font-medium transition-colors duration-150 ${
+                className={`font-sans text-sm font-semibold transition-colors duration-150 ${
                   pathname === href
-                    ? 'text-gold underline underline-offset-4'
-                    : 'text-cream/60 hover:text-cream'
+                    ? 'text-navy'
+                    : 'text-ink/55 hover:text-navy'
                 }`}
               >
                 {label}
+                {pathname === href && (
+                  <span className="block h-0.5 mt-1 rounded-full bg-gold" />
+                )}
               </Link>
             ))}
           </nav>
@@ -61,17 +65,23 @@ export default function Header() {
           <div className="flex items-center gap-2">
             {/* ── Tap-to-call ────────────────────────────────────── */}
             <a
-              href={PHONE_HREF}
-              className="flex items-center gap-2 border border-gold/40 text-gold font-sans font-semibold text-sm px-4 py-2 hover:bg-gold hover:text-espresso transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-gold"
+              href={BRAND.phoneHref}
+              className="hidden sm:flex items-center gap-2 rounded-full bg-navy text-white font-sans font-semibold text-sm px-5 py-2.5 hover:bg-navy-dark transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
             >
-              <PhoneIcon />
-              <span className="hidden sm:inline">{PHONE}</span>
-              <span className="sm:hidden">Call</span>
+              <PhoneIcon className="w-4 h-4" />
+              <span>{BRAND.phone}</span>
+            </a>
+            <a
+              href={BRAND.phoneHref}
+              className="sm:hidden flex items-center justify-center rounded-full bg-navy text-white w-10 h-10"
+              aria-label={`Call ${BRAND.phone}`}
+            >
+              <PhoneIcon className="w-4 h-4" />
             </a>
 
             {/* ── Mobile hamburger ───────────────────────────────── */}
             <button
-              className="md:hidden p-2 text-cream/70 hover:text-cream focus:outline-none focus:ring-2 focus:ring-cream"
+              className="md:hidden p-2 text-navy/70 hover:text-navy focus:outline-none focus:ring-2 focus:ring-navy rounded-lg"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
@@ -85,7 +95,7 @@ export default function Header() {
       {/* ── Mobile menu ──────────────────────────────────────────── */}
       {menuOpen && (
         <nav
-          className="md:hidden bg-espresso border-t border-gold/20"
+          className="md:hidden bg-white border-t border-cloud-dark"
           aria-label="Mobile navigation"
         >
           {navLinks.map(({ href, label }) => (
@@ -93,10 +103,10 @@ export default function Header() {
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className={`block px-6 py-3 font-sans text-sm font-medium border-b border-gold/10 transition-colors duration-150 ${
+              className={`block px-6 py-3.5 font-sans text-sm font-semibold border-b border-cloud-dark transition-colors duration-150 ${
                 pathname === href
-                  ? 'text-gold bg-black/20'
-                  : 'text-cream/60 hover:text-cream hover:bg-black/20'
+                  ? 'text-navy bg-cloud'
+                  : 'text-ink/60 hover:text-navy hover:bg-cloud'
               }`}
             >
               {label}
@@ -108,17 +118,9 @@ export default function Header() {
   )
 }
 
-function PhoneIcon() {
-  return (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-    </svg>
-  )
-}
-
 function HamburgerIcon() {
   return (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
     </svg>
   )
@@ -126,7 +128,7 @@ function HamburgerIcon() {
 
 function XIcon() {
   return (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
     </svg>
   )

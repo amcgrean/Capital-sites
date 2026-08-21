@@ -1,241 +1,119 @@
 import type { Metadata } from 'next'
-import { getBusiness } from '@/lib/supabase'
-import JsonLd from '@/components/JsonLd'
-
-export const dynamic = 'force-dynamic'
-
-const BASE_URL = 'https://capital-sites.vercel.app'
+import PageHeader from '@/components/PageHeader'
+import ContactForm from './ContactForm'
+import { BRAND } from '@/lib/brand'
+import { PhoneIcon, PinIcon, MailIcon, ClockIcon } from '@/components/icons'
 
 export const metadata: Metadata = {
-  title: 'Contact & Hours — Find Us in Clive, Iowa',
+  title: 'Contact & Referrals',
   description:
-    'Contact A Taste of Italy at 8421 University Blvd Suite D, Clive, IA 50325. Call 515-221-0743. Open Mon–Fri 10:30 AM–6:00 PM, Sat 10:30 AM–5:00 PM. Get directions and hours.',
-  alternates: { canonical: `${BASE_URL}/contact` },
-  openGraph: {
-    title: 'Contact & Hours | A Taste of Italy — Clive, Iowa',
-    description:
-      'Find A Taste of Italy at 8421 University Blvd Suite D, Clive, IA. Call 515-221-0743. Mon–Fri 10:30–6, Sat 10:30–5.',
-    url: `${BASE_URL}/contact`,
-    type: 'website',
+    "Contact Cecilia's Home in West Des Moines, Iowa. Call 816-217-2219, email ceciliashomellc@gmail.com, or send us a message about admissions and availability.",
+  alternates: { canonical: `${BRAND.url}/contact` },
+}
+
+const CONTACT_METHODS = [
+  {
+    label: 'Call Us',
+    value: BRAND.phone,
+    href: BRAND.phoneHref,
+    Icon: PhoneIcon,
+    note: 'We’re happy to answer any questions.',
   },
-}
-
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
-    { '@type': 'ListItem', position: 2, name: 'Contact', item: `${BASE_URL}/contact` },
-  ],
-}
-
-const DAYS_ORDER = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
+  {
+    label: 'Email Us',
+    value: BRAND.email,
+    href: `mailto:${BRAND.email}`,
+    Icon: MailIcon,
+    note: 'Send us a note anytime.',
+  },
+  {
+    label: 'Visit Us',
+    value: `${BRAND.street}, ${BRAND.cityStateZip}`,
+    href: BRAND.mapsUrl,
+    external: true,
+    Icon: PinIcon,
+    note: 'West Des Moines, Iowa.',
+  },
 ]
 
-const MAPS_EMBED_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001.4!2d-93.758!3d41.604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87ee99d5febc3101%3A0x1!2s8421+University+Blvd+Suite+D%2C+Clive%2C+IA+50325!5e0!3m2!1sen!2sus!4v1'
-
-const MAPS_URL =
-  'https://maps.google.com/?q=8421+University+Blvd+Suite+D,+Clive+IA+50325'
-
-const FACEBOOK_URL = 'https://www.facebook.com/atasteofitalyclive'
-
-export default async function ContactPage() {
-  const business = await getBusiness()
-  const hours = business?.hours ?? {}
-
+export default function ContactPage() {
   return (
-    <div className="min-h-screen">
-      <JsonLd schema={breadcrumbSchema} />
-      {/* Header */}
-      <div className="bg-italian-red text-parchment py-14">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="font-sans text-gold/70 text-[9px] font-semibold uppercase tracking-[0.3em] mb-2">
-            8421 University Blvd &nbsp;·&nbsp; Clive, Iowa
-          </p>
-          <h1 className="font-display text-5xl md:text-6xl italic mb-3">Contact Us</h1>
-          <p className="font-sans text-parchment/70 max-w-lg leading-relaxed">
-            We&rsquo;re located in Clive, Iowa. Stop in, give us a call, or find
-            us on Facebook.
-          </p>
-        </div>
-      </div>
+    <>
+      <PageHeader
+        eyebrow="Contact & Referrals"
+        title="We’d love to hear from you"
+        subtitle="Whether you're a family member, case manager, or exploring options for yourself, reach out and we'll help however we can."
+      />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-          {/* Info column */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Tap to call */}
-            <div className="bg-italian-red p-6 text-parchment text-center">
-              <p className="font-sans text-red-200 text-xs uppercase tracking-widest mb-2">
-                The fastest way to reach us
-              </p>
-              <a
-                href="tel:5152210743"
-                className="font-serif text-3xl text-white hover:text-red-200 transition-colors block mb-1"
-              >
-                515-221-0743
-              </a>
-              <p className="font-sans text-red-200 text-xs">Tap to call</p>
-            </div>
+      <section className="bg-cloud">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <div className="grid lg:grid-cols-5 gap-10">
+            {/* ── Contact details ─────────────────────────────────── */}
+            <div className="lg:col-span-2 space-y-5">
+              <div>
+                <p className="eyebrow mb-3">Get in Touch</p>
+                <h2 className="section-title mb-3">Here to help, every step of the way</h2>
+                <p className="font-sans text-ink/65 leading-relaxed">
+                  Reach out through whichever way is easiest for you. We&rsquo;ll
+                  respond as soon as we can.
+                </p>
+              </div>
 
-            {/* Address */}
-            <div>
-              <h2 className="font-sans text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
-                Location
-              </h2>
-              <address className="font-sans not-italic text-charcoal text-sm leading-relaxed mb-3">
-                8421 University Blvd Suite D
-                <br />
-                Clive, IA 50325
-              </address>
-              <a
-                href={MAPS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline text-sm py-2.5"
-              >
-                <PinIcon />
-                Get Directions
-              </a>
-            </div>
-
-            {/* Hours */}
-            <div>
-              <h2 className="font-sans text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
-                Hours
-              </h2>
-              <ul className="space-y-2">
-                {DAYS_ORDER.map((day) => {
-                  const time = hours[day] ?? 'Closed'
-                  const isClosed = time === 'Closed'
-                  const today = new Date().toLocaleDateString('en-US', {
-                    weekday: 'long',
-                  })
-                  const isToday = today === day
-
-                  return (
-                    <li
-                      key={day}
-                      className={`flex justify-between font-sans text-sm py-1.5 ${
-                        isToday ? 'font-semibold text-charcoal' : 'text-gray-600'
-                      } ${isToday ? 'border-l-2 border-italian-red pl-2' : ''}`}
-                    >
-                      <span>{day}</span>
-                      <span className={isClosed ? 'text-gray-400' : ''}>
-                        {time}
+              <div className="space-y-4">
+                {CONTACT_METHODS.map(({ label, value, href, Icon, note, external }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="card p-5 flex items-start gap-4 hover:shadow-md transition-shadow"
+                  >
+                    <span className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-navy text-white shrink-0">
+                      <Icon className="w-6 h-6" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-sans text-[10px] font-bold text-gold uppercase tracking-[0.2em] mb-1">
+                        {label}
                       </span>
-                    </li>
-                  )
-                })}
-              </ul>
+                      <span className="block font-serif text-navy font-semibold break-words">
+                        {value}
+                      </span>
+                      <span className="block font-sans text-sm text-ink/55 mt-0.5">{note}</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+
+              <div className="card p-5 flex items-start gap-4">
+                <span className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-sage/12 text-sage shrink-0">
+                  <ClockIcon className="w-6 h-6" />
+                </span>
+                <span>
+                  <span className="block font-sans text-[10px] font-bold text-gold uppercase tracking-[0.2em] mb-1">
+                    Support Hours
+                  </span>
+                  <span className="block font-serif text-navy font-semibold">
+                    Care staff on-site 24 / 7
+                  </span>
+                  <span className="block font-sans text-sm text-ink/55 mt-0.5">
+                    Office inquiries returned during business hours.
+                  </span>
+                </span>
+              </div>
             </div>
 
-            {/* Social */}
-            <div>
-              <h2 className="font-sans text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
-                Follow Us
-              </h2>
-              <a
-                href={FACEBOOK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-sans text-sm font-medium text-charcoal hover:text-italian-red transition-colors"
-              >
-                <FacebookIcon />
-                A Taste of Italy on Facebook
-              </a>
+            {/* ── Form ────────────────────────────────────────────── */}
+            <div className="lg:col-span-3">
+              <div className="card p-8 md:p-10">
+                <p className="eyebrow mb-2">Send a Message</p>
+                <h2 className="font-serif text-2xl font-bold text-navy mb-6">
+                  Request information
+                </h2>
+                <ContactForm />
+              </div>
             </div>
           </div>
-
-          {/* Map column */}
-          <div className="lg:col-span-3">
-            <div className="overflow-hidden border border-parchment-dark h-80 lg:h-full min-h-[320px]">
-              <iframe
-                src={MAPS_EMBED_URL}
-                width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: '320px' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="A Taste of Italy location map"
-              />
-            </div>
-            <p className="font-sans text-xs text-gray-400 mt-2 text-center">
-              8421 University Blvd Suite D · Clive, IA 50325
-            </p>
-          </div>
         </div>
-      </div>
-
-      {/* CTA strip */}
-      <div className="bg-cream-dark border-t border-gray-200 py-12">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-serif text-2xl text-charcoal mb-2">
-            Planning an Event?
-          </h2>
-          <p className="font-sans text-gray-600 text-sm mb-6">
-            We offer full catering — deli trays, 6-foot subs, box lunches, and
-            more. 48-hour notice required.
-          </p>
-          <a
-            href="/catering"
-            className="btn-primary"
-          >
-            Catering Inquiry
-          </a>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function PinIcon() {
-  return (
-    <svg
-      className="w-4 h-4"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-      />
-    </svg>
-  )
-}
-
-function FacebookIcon() {
-  return (
-    <svg
-      className="w-4 h-4"
-      fill="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path
-        fillRule="evenodd"
-        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-        clipRule="evenodd"
-      />
-    </svg>
+      </section>
+    </>
   )
 }

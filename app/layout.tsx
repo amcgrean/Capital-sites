@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display, Cormorant_Garamond } from 'next/font/google'
+import { Inter, Playfair_Display, Dancing_Script } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import JsonLd from '@/components/JsonLd'
+import { BRAND } from '@/lib/brand'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,123 +16,91 @@ const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
   display: 'swap',
-  style: ['normal', 'italic'],
+  weight: ['400', '600', '700', '800'],
 })
 
-const cormorant = Cormorant_Garamond({
+const dancing = Dancing_Script({
   subsets: ['latin'],
-  variable: '--font-cormorant',
+  variable: '--font-dancing',
   display: 'swap',
-  weight: ['400', '600', '700'],
-  style: ['normal', 'italic'],
+  weight: ['500', '600', '700'],
 })
 
-const BASE_URL = 'https://capital-sites.vercel.app'
+const BASE_URL = BRAND.url
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'A Taste of Italy | Family Italian Deli & Market in Clive, Iowa',
-    template: '%s | A Taste of Italy — Clive, Iowa',
+    default:
+      "Cecilia's Home | Supportive Group Home in West Des Moines, Iowa",
+    template: "%s | Cecilia's Home — West Des Moines, Iowa",
   },
   description:
-    "Family-owned Italian deli and market in Clive, Iowa since June 1996. Fresh sandwiches made to order — Chicago beef, meatball subs, Graziano's sausage, and an Italian grocery counter you won't find anywhere else in Iowa.",
+    "Cecilia's Home is a loving, supportive group home in West Des Moines, Iowa, providing a safe, structured environment that promotes independence, dignity, and respect. 24/7 person-centered care from professional, compassionate staff.",
   keywords: [
-    'Italian deli Clive Iowa',
-    'Italian deli Des Moines',
-    'Chicago beef sandwich Iowa',
-    'meatball sub Clive Iowa',
-    'Italian catering Des Moines',
-    'deli trays Clive Iowa',
-    'Graziano sausage sandwich',
-    'family owned Italian deli Iowa',
-    'Italian market Des Moines',
-    'best Italian food Des Moines',
-    'A Taste of Italy Clive',
-    'Todd Ferin deli',
+    'group home West Des Moines Iowa',
+    'supportive living Iowa',
+    'residential care Des Moines',
+    '24/7 supportive care Iowa',
+    'person-centered support',
+    'disability support home Iowa',
+    'assisted living West Des Moines',
+    "Cecilia's Home",
+    'compassionate care Iowa',
+    'independent living support',
   ],
   openGraph: {
-    siteName: 'A Taste of Italy',
+    siteName: "Cecilia's Home",
     locale: 'en_US',
     type: 'website',
-    title: 'A Taste of Italy | Family Italian Deli & Market in Clive, Iowa',
+    title: "Cecilia's Home | Supportive Group Home in West Des Moines, Iowa",
     description:
-      "Clive, Iowa's Italian deli and market since 1996. Chicago beef, meatball subs, Graziano's sausage, deli trays, and an Italian grocery counter — made fresh daily.",
+      'A loving and supportive group home for all people. We provide a safe, structured environment that promotes independence, dignity, and respect.',
     url: BASE_URL,
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 800,
-        height: 450,
-        alt: 'A Taste of Italy storefront at 8421 University Blvd, Clive, Iowa',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'A Taste of Italy | Italian Deli & Market — Clive, Iowa',
+    title: "Cecilia's Home | Supportive Group Home — West Des Moines, Iowa",
     description:
-      "Family-owned Italian deli in Clive, Iowa since 1996. Chicago beef, meatball subs, Graziano's sausage, deli trays, and an Italian grocery counter.",
-    images: ['/og-image.jpg'],
+      'Supporting individuals, empowering lives. Safe, comfortable living with 24/7 person-centered care in West Des Moines, Iowa.',
   },
   alternates: {
     canonical: BASE_URL,
   },
 }
 
-// LocalBusiness + Restaurant structured data — site-wide
-const localBusinessSchema = {
+// Organization / LocalBusiness structured data — site-wide
+const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': ['Restaurant', 'FoodEstablishment', 'LocalBusiness'],
-  '@id': `${BASE_URL}/#business`,
-  name: 'A Taste of Italy',
+  '@type': ['LocalBusiness', 'Organization'],
+  '@id': `${BASE_URL}/#organization`,
+  name: "Cecilia's Home",
+  alternateName: "Cecilia's Home LLC",
   description:
-    "Family-owned Italian deli and market in Clive, Iowa. Fresh sandwiches made to order — Chicago beef, hand-rolled meatballs, Graziano's sausage, and an Italian grocery counter since June 1, 1996.",
+    "A loving and supportive group home for all people, providing a safe, structured environment that promotes independence, dignity, and respect in West Des Moines, Iowa.",
   url: BASE_URL,
-  telephone: '+1-515-221-0743',
-  priceRange: '$$',
-  servesCuisine: ['Italian', 'Sandwiches', 'Deli'],
-  image: `${BASE_URL}/og-image.jpg`,
-  founder: {
-    '@type': 'Person',
-    name: 'Todd Ferin',
-  },
-  foundingDate: '1996-06-01',
+  telephone: BRAND.phoneHref.replace('tel:', '+1-'),
+  email: BRAND.email,
+  slogan: 'A home. A family. A future.',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '8421 University Blvd Suite D',
-    addressLocality: 'Clive',
+    streetAddress: BRAND.street,
+    addressLocality: 'West Des Moines',
     addressRegion: 'IA',
-    postalCode: '50325',
+    postalCode: '50265',
     addressCountry: 'US',
   },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 41.604,
-    longitude: -93.758,
-  },
-  hasMap: 'https://maps.google.com/?q=8421+University+Blvd+Suite+D,+Clive+IA+50325',
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '10:30',
-      closes: '18:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Saturday',
-      opens: '10:30',
-      closes: '17:00',
-    },
-  ],
-  sameAs: ['https://www.facebook.com/atasteofitalyclive'],
   areaServed: [
-    { '@type': 'City', name: 'Clive', containedInPlace: { '@type': 'State', name: 'Iowa' } },
-    { '@type': 'City', name: 'Des Moines', containedInPlace: { '@type': 'State', name: 'Iowa' } },
     { '@type': 'City', name: 'West Des Moines', containedInPlace: { '@type': 'State', name: 'Iowa' } },
+    { '@type': 'City', name: 'Des Moines', containedInPlace: { '@type': 'State', name: 'Iowa' } },
+    { '@type': 'City', name: 'Clive', containedInPlace: { '@type': 'State', name: 'Iowa' } },
     { '@type': 'City', name: 'Urbandale', containedInPlace: { '@type': 'State', name: 'Iowa' } },
-    { '@type': 'City', name: 'Waukee', containedInPlace: { '@type': 'State', name: 'Iowa' } },
+  ],
+  knowsAbout: [
+    'Supportive living',
+    'Residential care',
+    'Person-centered support',
+    '24/7 supervised care',
   ],
 }
 
@@ -139,11 +108,9 @@ const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${BASE_URL}/#website`,
-  name: 'A Taste of Italy',
+  name: "Cecilia's Home",
   url: BASE_URL,
-  publisher: {
-    '@id': `${BASE_URL}/#business`,
-  },
+  publisher: { '@id': `${BASE_URL}/#organization` },
 }
 
 export default function RootLayout({
@@ -154,10 +121,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} ${cormorant.variable}`}
+      className={`${inter.variable} ${playfair.variable} ${dancing.variable}`}
     >
       <body className="min-h-screen flex flex-col">
-        <JsonLd schema={localBusinessSchema} />
+        <JsonLd schema={organizationSchema} />
         <JsonLd schema={websiteSchema} />
         <Header />
         <main className="flex-1">{children}</main>

@@ -9,32 +9,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Primary brand — deep wine red (not bright chain-restaurant red)
-        'italian-red':       '#6B1212',
-        'italian-red-dark':  '#4A0C0C',
-        'italian-red-light': '#8B2020',
-        // Backgrounds — warm parchment / aged paper
-        'cream':             '#F5EBD0',
-        'cream-dark':        '#EDD8B0',
-        'parchment':         '#F5EBD0',
-        'parchment-dark':    '#EDD8B0',
-        // Deep Italian green (think fresh herbs, Italian flag, vintage signage)
-        'olive':             '#1C3D24',
-        'olive-light':       '#2A5636',
-        'basil':             '#1C3D24',
-        'basil-dark':        '#112619',
-        // Antique gold — for borders, accents, prices, ornaments
-        'gold':              '#B8860B',
-        'gold-light':        '#D4A520',
-        // Very dark espresso — for header, footer, dark sections
-        'espresso':          '#1A0804',
-        // Text
-        'charcoal':          '#1C1C1C',
+        // Primary brand — deep, trustworthy navy (logo + wordmark)
+        'navy':        '#1B2E63',
+        'navy-dark':   '#122048',
+        'navy-deep':   '#0D1836', // footer / darkest sections
+        'navy-light':  '#2A4184',
+        // Light-blue accent — "Supporting Individuals. Empowering Lives."
+        'sky':         '#2E6FB0',
+        'sky-light':   '#4A8AC9',
+        // Warm amber/gold accent — tagline, dividers, highlights
+        'gold':        '#E58A2E',
+        'gold-dark':   '#C9721C',
+        'gold-light':  '#F4A94A',
+        // Calm sage green — nature, "Respect", subtle accents
+        'sage':        '#3E7C3F',
+        'sage-light':  '#5A9E5B',
+        // Soft, airy backgrounds
+        'cloud':       '#F4F7FB',
+        'cloud-dark':  '#E7EEF6',
+        // Body text
+        'ink':         '#1F2A44',
       },
       fontFamily: {
-        serif:   ['var(--font-playfair)', 'Georgia', 'serif'],
-        sans:    ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-cormorant)', 'Georgia', 'serif'],
+        serif:  ['var(--font-playfair)', 'Georgia', 'serif'],
+        sans:   ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        script: ['var(--font-dancing)', 'cursive'],
       },
     },
   },

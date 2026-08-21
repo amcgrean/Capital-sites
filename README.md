@@ -1,6 +1,13 @@
-# A Taste of Italy — Website
+# Cecilia's Home — Website
 
-Next.js 14 (App Router) website for A Taste of Italy, an authentic Italian deli in Clive, Iowa. Built as the first site in a multi-tenant local business web agency setup — all client data lives in a single Supabase project, isolated by `business_id`.
+Next.js 14 (App Router) marketing website for **Cecilia's Home**, a loving and
+supportive group home in West Des Moines, Iowa. Built on the **Capital Sites**
+multi-tenant framework, so the same codebase can be re-skinned for other local
+clients by editing a few content files.
+
+- **Tagline:** *A home. A family. A future.*
+- **Motto:** *Where quality care has no boundary*
+- **Promise:** *Supporting Individuals. Empowering Lives.*
 
 ---
 
@@ -10,98 +17,67 @@ Next.js 14 (App Router) website for A Taste of Italy, an authentic Italian deli 
 |---|---|
 | Framework | Next.js 14 (App Router) |
 | Styling | Tailwind CSS |
-| Database | Supabase (PostgreSQL) |
-| Email | Resend |
+| Email | Resend (optional — contact-form notifications) |
 | Hosting | Vercel |
+| Fonts | Inter, Playfair Display, Dancing Script |
+
+There is **no database** — all site content is static (in code). The only
+backend is the contact-form handler at `app/api/contact/route.ts`.
 
 ---
 
 ## Local Development
 
-### 1. Clone & install
-
 ```bash
 git clone <repo-url>
 cd Capital-sites
 npm install
-```
-
-### 2. Set up environment variables
-
-```bash
-cp .env.local.example .env.local
-```
-
-Fill in `.env.local`:
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-NEXT_PUBLIC_BUSINESS_ID=your-business-uuid
-RESEND_API_KEY=re_your_api_key
-CATERING_INQUIRY_EMAIL=owner@example.com
-```
-
-### 3. Run the dev server
-
-```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
----
+Environment variables are **optional** — the site (including the contact form)
+runs fully without any. To enable contact-form emails, copy the example file and
+fill in your Resend key:
 
-## Supabase Setup
-
-### Create the schema
-
-In your Supabase project, open **SQL Editor** and run:
-
-```sql
--- paste the contents of supabase/schema.sql
+```bash
+cp .env.local.example .env.local
 ```
 
-### Seed the data
+| Variable | Required | Description |
+|---|---|---|
+| `RESEND_API_KEY` | No (enables email) | Resend API key for contact-form emails |
+| `CONTACT_INQUIRY_EMAIL` | No | Where inquiries are delivered (defaults to the address in `lib/brand.ts`) |
+| `CONTACT_FROM_EMAIL` | No | Verified Resend "from" address (defaults to Resend's onboarding sender) |
 
-Then run:
-
-```sql
--- paste the contents of supabase/seed.sql
-```
-
-This inserts the A Taste of Italy business record and all menu items.
-
-### Get your `BUSINESS_ID`
-
-After seeding, run:
-
-```sql
-select id from businesses where slug = 'taste-of-italy';
-```
-
-Copy that UUID and set it as `NEXT_PUBLIC_BUSINESS_ID` in your `.env.local` and in your Vercel project settings.
-
-### Row Level Security
-
-The schema enables RLS with policies that allow:
-- **Public read** on `businesses` and `menu_items`
-- **Public insert** on `catering_inquiries`
-
-No authentication is required for the front-end.
+Without `RESEND_API_KEY`, the form still succeeds: the inquiry is logged
+server-side and no email is sent.
 
 ---
 
-## Resend Setup
+## Editing Content
+
+Everything client-specific lives in two files:
+
+- **`lib/brand.ts`** — name, tagline, phone, email, address, map URL. Read by
+  every page, the header, footer, and page metadata.
+- **`lib/content.tsx`** — the `VALUES`, `SERVICES`, and `METHODOLOGY` arrays that
+  the Home, About, and Services pages render from.
+
+Design tokens (colors, fonts) live in `tailwind.config.ts`, and shared utility
+classes (`.btn-*`, `.card`, `.eyebrow`, `.rule-gold`, `.field-input`) in
+`app/globals.css`.
+
+---
+
+## Resend Setup (optional)
 
 1. Create an account at [resend.com](https://resend.com)
 2. Verify your sending domain
-3. Create an API key and set it as `RESEND_API_KEY`
-4. Update the `from` field in `app/api/catering/route.ts` to use your verified domain:
-   ```ts
-   from: 'A Taste of Italy <noreply@yourdomain.com>',
-   ```
-5. Set `CATERING_INQUIRY_EMAIL` to where you want inquiries delivered
+3. Create an API key → set it as `RESEND_API_KEY`
+4. Set `CONTACT_FROM_EMAIL` to an address on your verified domain
+5. Set `CONTACT_INQUIRY_EMAIL` to where you want inquiries delivered
 
 ---
 
@@ -109,52 +85,8 @@ No authentication is required for the front-end.
 
 1. Push to GitHub
 2. Import the repo in [vercel.com](https://vercel.com)
-3. Add all environment variables in **Project Settings → Environment Variables**:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `NEXT_PUBLIC_BUSINESS_ID`
-   - `RESEND_API_KEY`
-   - `CATERING_INQUIRY_EMAIL`
+3. (Optional) Add the Resend env vars in **Project Settings → Environment Variables**
 4. Deploy — Vercel auto-detects Next.js
-
----
-
-## Updating Menu Items
-
-Menu items are managed entirely through the **Supabase Table Editor** — no code changes needed.
-
-1. Go to your Supabase project → **Table Editor** → `menu_items`
-2. To **add** an item: click **Insert row**, fill in the fields
-3. To **edit** an item: click the row, update values, save
-4. To **hide** an item (without deleting): set `available = false`
-5. To **feature** an item on the homepage: set `featured = true`
-6. **Sort order**: adjust `sort_order` (lower = higher on the page)
-
-### Key fields
-
-| Field | Description |
-|---|---|
-| `business_id` | Must match your `NEXT_PUBLIC_BUSINESS_ID` — copy from the businesses table |
-| `category` | Groups items on the menu page. Current categories: `Hot Sandwiches`, `Cold Sandwiches`, `Deli Trays`, `Sides`, `Grocery` |
-| `item_name` | Displayed as the item heading |
-| `description` | Short description shown under the name |
-| `price` | Free-form text — e.g. `9.95`, `$3.95/person`, `Market price`, `Call for pricing` |
-| `featured` | `true` = shown in the "House Favorites" section on the homepage |
-| `available` | `false` = hidden from the menu (seasonal items, out of stock, etc.) |
-| `sort_order` | Controls display order within each category |
-
----
-
-## Adding a New Client (Multi-tenant)
-
-This codebase supports multiple clients via the `NEXT_PUBLIC_BUSINESS_ID` env var.
-
-1. Insert a new row in the `businesses` table with the new client's info
-2. Seed their `menu_items` rows with the new `business_id`
-3. Fork or redeploy the project with `NEXT_PUBLIC_BUSINESS_ID` set to the new business UUID
-4. Update design tokens in `tailwind.config.ts` and copy as needed
-
-All data is isolated — each deployment only sees its own business's data.
 
 ---
 
@@ -162,40 +94,34 @@ All data is isolated — each deployment only sees its own business's data.
 
 ```
 app/
-  layout.tsx          Root layout (Header + Footer)
-  globals.css         Tailwind + global styles
-  page.tsx            Homepage
-  menu/
-    page.tsx          Server component — fetches menu items
-    MenuClient.tsx    Client component — tabbed category nav
-  catering/
-    page.tsx          Catering info + form layout
-    CateringForm.tsx  Client form component
-  about/
-    page.tsx          About page
+  layout.tsx           Root layout (Header + Footer + JSON-LD)
+  globals.css          Tailwind + global component styles
+  page.tsx             Homepage
+  about/page.tsx       Mission, values, who we serve
+  services/page.tsx    Services detail + methodology
   contact/
-    page.tsx          Contact + embedded map
-  api/
-    catering/
-      route.ts        POST handler — saves inquiry + sends email
+    page.tsx           Contact info + form
+    ContactForm.tsx    Client form component
+  api/contact/route.ts POST handler — emails inquiries via Resend (optional)
+  sitemap.ts / robots.ts
 components/
-  Header.tsx          Sticky header with mobile nav + tap-to-call
-  Footer.tsx          Footer with address, hours, links
+  Header.tsx           Sticky header, logo + nav + tap-to-call
+  Footer.tsx           Navy footer with contact + tagline
+  Logo.tsx             Inline SVG house-with-heart mark
+  PageHeader.tsx       Navy hero band for interior pages
+  icons.tsx            Shared inline SVG icons
+  JsonLd.tsx           JSON-LD <script> injector
 lib/
-  supabase.ts         Supabase client + data fetcher functions
-supabase/
-  schema.sql          Database schema (run first)
-  seed.sql            Seed data for A Taste of Italy
+  brand.ts             Brand + contact constants
+  content.tsx          Shared VALUES / SERVICES / METHODOLOGY content
+tailwind.config.ts     Color tokens + font families
 ```
 
 ---
 
-## Environment Variables Reference
+## Re-skinning for Another Client (Multi-tenant)
 
-| Variable | Required | Description |
-|---|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | Yes | Your Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase anon/public key |
-| `NEXT_PUBLIC_BUSINESS_ID` | Yes | UUID of the business row in Supabase |
-| `RESEND_API_KEY` | Yes (for email) | Resend API key for catering inquiry emails |
-| `CATERING_INQUIRY_EMAIL` | Yes (for email) | Email address to receive catering inquiries |
+1. Update `lib/brand.ts` with the new client's name and contact details
+2. Update `lib/content.tsx` with their values / services / approach
+3. Adjust color tokens and fonts in `tailwind.config.ts` + `app/layout.tsx`
+4. Swap the `<Logo>` mark and page copy as needed

@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
+import { BRAND } from '@/lib/brand'
 
-const BASE_URL = 'https://capital-sites.vercel.app'
+const BASE_URL = BRAND.url
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -11,22 +12,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${BASE_URL}/menu`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/catering`,
+      url: `${BASE_URL}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/about`,
+      url: `${BASE_URL}/services`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${BASE_URL}/contact`,
